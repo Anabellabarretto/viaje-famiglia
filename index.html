@@ -3,771 +3,196 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Viaje Famiglia Barreto · España & Italia · Mayo 2025</title>
+  <title>Viaje Famiglia Barreto · España & Italia · Mayo 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
-    /* ===== VARIABLES ===== */
     :root {
-      --navy: #1b3a5c;
-      --terra: #c4603a;
-      --gold: #d4a843;
-      --bg: #f5f0e8;
-      --card: #ffffff;
-      --text: #2c2c2c;
-      --text-light: #777;
-      --border: #e5ddd1;
-      --pending: #e6900a;
-      --shadow: 0 6px 30px rgba(0,0,0,0.09);
-      --radius: 16px;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Lato', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
-
-    /* ===== HERO ===== */
-    .hero {
-      height: 100vh;
-      min-height: 600px;
-      background:
-        linear-gradient(to bottom, rgba(12,26,48,0.45) 0%, rgba(12,26,48,0.72) 100%),
-        url('https://images.unsplash.com/photo-1534308143923-c3aa5eb35b65?auto=format&fit=crop&w=1600&q=85') center / cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-      position: relative;
-      padding: 24px;
-    }
-
-    .hero-eyebrow {
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
-      font-size: 0.85rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      opacity: 0.85;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 6vw, 5rem);
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: #f0c77a;
-    }
-
-    .hero-dates {
-      font-size: 1.1rem;
-      font-weight: 300;
-      opacity: 0.9;
-      letter-spacing: 1px;
-      margin-bottom: 40px;
-    }
-
-    .hero-flags {
-      font-size: 2rem;
-      letter-spacing: 8px;
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      opacity: 0.7;
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .hero-scroll .arrow {
-      width: 20px;
-      height: 20px;
-      border-right: 2px solid white;
-      border-bottom: 2px solid white;
-      transform: rotate(45deg);
-      animation: bounce 1.4s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: rotate(45deg) translateY(0); }
-      50% { transform: rotate(45deg) translateY(5px); }
-    }
-
-    /* ===== STICKY NAV ===== */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(27, 58, 92, 0.97);
-      backdrop-filter: blur(10px);
-      padding: 0 24px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .nav::-webkit-scrollbar { display: none; }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      max-width: 1100px;
-      margin: 0 auto;
-      white-space: nowrap;
-    }
-
-    .nav a {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 14px 16px;
-      color: rgba(255,255,255,0.75);
-      text-decoration: none;
-      font-size: 0.8rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-weight: 700;
-      transition: color 0.2s, border-bottom 0.2s;
-      border-bottom: 3px solid transparent;
-    }
-
-    .nav a:hover {
-      color: #f0c77a;
-      border-bottom-color: #f0c77a;
-    }
-
-    /* ===== MAIN CONTAINER ===== */
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 60px 20px;
-    }
-
-    /* ===== SECTION TITLES ===== */
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 10px;
-    }
-
-    .section-sub {
-      font-size: 0.9rem;
-      color: var(--text-light);
-      margin-bottom: 48px;
-      letter-spacing: 0.5px;
-    }
-
-    /* ===== DESTINATION CARDS ===== */
-    .destination {
-      margin-bottom: 64px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      background: var(--card);
-    }
-
-    .dest-image {
-      height: 280px;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-
-    .dest-image-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(10,20,40,0.8) 0%, transparent 60%);
-      display: flex;
-      align-items: flex-end;
-      padding: 28px 32px;
-    }
-
-    .dest-header {
-      color: white;
-    }
-
-    .dest-dates-tag {
-      display: inline-block;
-      background: var(--terra);
-      color: white;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 20px;
-      margin-bottom: 8px;
-    }
-
-    .dest-city {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
-      font-weight: 700;
-      line-height: 1.1;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
-    }
-
-    .dest-country {
-      font-size: 0.85rem;
-      opacity: 0.8;
-      font-weight: 300;
-      margin-top: 2px;
-    }
-
-    .dest-body {
-      padding: 28px 32px;
-    }
-
-    /* ===== INFO BLOCKS ===== */
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
-    @media (max-width: 600px) {
-      .info-grid { grid-template-columns: 1fr; }
-    }
-
-    .info-block {
-      background: #faf8f4;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px 18px;
-    }
-
-    .info-block.full-width {
-      grid-column: 1 / -1;
-    }
-
-    .info-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--terra);
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .info-value {
-      font-size: 0.92rem;
-      color: var(--text);
-    }
-
-    .info-value strong {
-      font-weight: 700;
-      color: var(--navy);
-    }
-
-    .info-value a {
-      color: var(--navy);
-      font-weight: 700;
-      text-decoration: none;
-      border-bottom: 1.5px solid var(--gold);
-      transition: color 0.2s;
-    }
-
-    .info-value a:hover { color: var(--terra); }
-
-    /* ===== TRANSPORT DETAIL ===== */
-    .transport-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.9rem;
-      margin-top: 6px;
-    }
-
-    .transport-icon {
-      font-size: 1.3rem;
-      flex-shrink: 0;
-    }
-
-    .transport-route {
-      font-weight: 700;
-      color: var(--navy);
-    }
-
-    .transport-time {
-      color: var(--terra);
-      font-weight: 700;
-      font-size: 0.85rem;
-    }
-
-    .transport-detail {
-      color: var(--text-light);
-      font-size: 0.8rem;
-      margin-top: 2px;
-    }
-
-    /* ===== ACTIVITIES ===== */
-    .activities-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 6px;
-    }
-
-    .activities-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.9rem;
-    }
-
-    .activities-list li .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--gold);
-      flex-shrink: 0;
-      margin-top: 7px;
-    }
-
-    /* ===== BADGES ===== */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 20px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-
-    .badge-pending {
-      background: #fff3cd;
-      color: #856404;
-      border: 1px solid #ffd04a;
-    }
-
-    .badge-reserved {
-      background: #d1f0e0;
-      color: #1a6b3c;
-      border: 1px solid #7dcea0;
-    }
-
-    /* ===== PLAN DE LLEGADA ===== */
-    .plan-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      margin-top: 6px;
-    }
-
-    .plan-step {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      position: relative;
-    }
-
-    .plan-step:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      left: 17px;
-      top: 36px;
-      bottom: -8px;
-      width: 2px;
-      background: var(--border);
-    }
-
-    .plan-step-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--navy);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      flex-shrink: 0;
-      margin-bottom: 16px;
-    }
-
-    .plan-step-content {
-      padding-top: 6px;
-      padding-bottom: 10px;
-    }
-
-    .plan-step-time {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: var(--terra);
-      text-transform: uppercase;
-      margin-bottom: 2px;
-    }
-
-    .plan-step-text {
-      font-size: 0.9rem;
-      color: var(--text);
-      line-height: 1.5;
-    }
-
-    .plan-step-text strong { color: var(--navy); }
-
-    /* ===== DAY TRIP TAG ===== */
-    .daytrip-banner {
-      background: linear-gradient(90deg, #f0ebe0, #e8dfc8);
-      border-left: 4px solid var(--gold);
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      color: #5a4a1f;
-      margin-bottom: 16px;
-      font-weight: 600;
-    }
-
-    /* ===== DIVIDER ===== */
-    .section-divider {
-      text-align: center;
-      margin: 48px 0;
-      color: var(--text-light);
-      font-size: 1.5rem;
-      letter-spacing: 12px;
-      opacity: 0.4;
-    }
-
-    /* ===== WISHLIST SECTION ===== */
-    #wishlist-section {
-      background: var(--navy);
-      padding: 70px 20px;
-    }
-
-    .wishlist-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .wishlist-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-
-    .wishlist-header .section-title {
-      color: white;
-    }
-
-    .wishlist-header .section-sub {
-      color: rgba(255,255,255,0.55);
-    }
-
-    .btn-add {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--terra);
-      color: white;
-      border: none;
-      border-radius: 30px;
-      padding: 13px 24px;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      white-space: nowrap;
-    }
-
-    .btn-add:hover {
-      background: #a84e2e;
-      transform: translateY(-1px);
-    }
-
-    .btn-add:active { transform: translateY(0); }
-
-    /* ===== WISH CARDS GRID ===== */
-    .wish-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 16px;
-    }
-
-    .wish-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 12px;
-      padding: 20px;
-      animation: fadeIn 0.4s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .wish-card-city {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-
-    .wish-card-text {
-      font-size: 0.95rem;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.5;
-      margin-bottom: 12px;
-    }
-
-    .wish-card-author {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.45);
-    }
-
-    .wish-empty {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 40px;
-      color: rgba(255,255,255,0.35);
-      font-size: 0.95rem;
-    }
-
-    .wish-loading {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 40px;
-      color: rgba(255,255,255,0.4);
-    }
-
-    /* ===== MODAL ===== */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(10,20,40,0.75);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal-overlay.open { display: flex; }
-
-    .modal {
-      background: white;
-      border-radius: 20px;
-      padding: 36px;
-      width: 100%;
-      max-width: 460px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      animation: modalIn 0.25s ease;
-    }
-
-    @keyframes modalIn {
-      from { opacity: 0; transform: scale(0.94) translateY(10px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-
-    .modal h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--navy);
-      margin-bottom: 6px;
-    }
-
-    .modal p {
-      color: var(--text-light);
-      font-size: 0.88rem;
-      margin-bottom: 28px;
-    }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--navy);
-      margin-bottom: 6px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.92rem;
-      color: var(--text);
-      background: #faf8f4;
-      transition: border-color 0.2s;
-      outline: none;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--navy);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 90px;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .btn-cancel {
-      flex: 1;
-      padding: 13px;
-      background: #f5f0e8;
-      border: 1.5px solid var(--border);
-      border-radius: 30px;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--text-light);
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .btn-cancel:hover { background: #ede8de; }
-
-    .btn-submit {
-      flex: 2;
-      padding: 13px;
-      background: var(--navy);
-      border: none;
-      border-radius: 30px;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: white;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .btn-submit:hover { background: #142d47; }
-    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-
-    /* ===== TOAST ===== */
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #1a6b3c;
-      color: white;
-      padding: 14px 22px;
-      border-radius: 12px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      z-index: 300;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s, transform 0.3s;
-      pointer-events: none;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: #0d1f33;
-      color: rgba(255,255,255,0.45);
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 0.82rem;
-    }
-
-    footer strong { color: rgba(255,255,255,0.7); }
-
-    /* ===== FIREBASE CONFIG NOTICE ===== */
-    .firebase-notice {
-      background: #fff3cd;
-      border: 1.5px solid #ffd04a;
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin-bottom: 32px;
-      font-size: 0.88rem;
-      color: #5a4a00;
-    }
-
-    .firebase-notice strong { color: #3d3200; }
-    .firebase-notice code {
-      background: rgba(0,0,0,0.08);
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 0.82rem;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 700px) {
-      .dest-image { height: 200px; }
-      .dest-body { padding: 20px 18px; }
-      .dest-city { font-size: 1.9rem; }
-      .dest-image-overlay { padding: 18px 20px; }
-    }
+      --navy: #1b3a5c; --terra: #c4603a; --gold: #d4a843;
+      --bg: #f5f0e8; --card: #fff; --text: #2c2c2c;
+      --text-light: #777; --border: #e5ddd1;
+      --shadow: 0 6px 30px rgba(0,0,0,0.09); --radius: 16px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Lato',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+
+    /* HERO */
+    .hero { height:100vh; min-height:600px; background: linear-gradient(to bottom,rgba(12,26,48,.45),rgba(12,26,48,.72)), url('https://images.unsplash.com/photo-1534308143923-c3aa5eb35b65?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:#fff; position:relative; padding:24px; }
+    .hero-eyebrow { font-weight:300; font-size:.85rem; letter-spacing:4px; text-transform:uppercase; opacity:.85; margin-bottom:18px; }
+    .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.4rem,6vw,5rem); font-weight:700; line-height:1.15; margin-bottom:20px; text-shadow:0 2px 20px rgba(0,0,0,.3); }
+    .hero h1 em { font-style:italic; color:#f0c77a; }
+    .hero-dates { font-size:1.1rem; font-weight:300; opacity:.9; letter-spacing:1px; margin-bottom:40px; }
+    .hero-flags { font-size:2rem; letter-spacing:8px; }
+    .hero-scroll { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; opacity:.7; font-size:.75rem; letter-spacing:2px; text-transform:uppercase; }
+    .arrow { width:20px; height:20px; border-right:2px solid white; border-bottom:2px solid white; transform:rotate(45deg); animation:bounce 1.4s infinite; }
+    @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
+
+    /* NAV */
+    .nav { position:sticky; top:0; z-index:100; background:rgba(27,58,92,.97); backdrop-filter:blur(10px); padding:0 24px; overflow-x:auto; scrollbar-width:none; }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav-inner { display:flex; align-items:center; max-width:1100px; margin:0 auto; white-space:nowrap; }
+    .nav a { display:inline-flex; align-items:center; gap:6px; padding:14px 14px; color:rgba(255,255,255,.75); text-decoration:none; font-size:.78rem; letter-spacing:1px; text-transform:uppercase; font-weight:700; border-bottom:3px solid transparent; transition:color .2s,border-bottom .2s; }
+    .nav a:hover { color:#f0c77a; border-bottom-color:#f0c77a; }
+
+    /* CONTAINER */
+    .container { max-width:900px; margin:0 auto; padding:60px 20px; }
+    .section-title { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--navy); margin-bottom:10px; }
+    .section-sub { font-size:.9rem; color:var(--text-light); margin-bottom:48px; }
+    .section-divider { text-align:center; margin:48px 0; color:var(--text-light); font-size:1.5rem; letter-spacing:12px; opacity:.4; }
+
+    /* DESTINATION CARD */
+    .destination { margin-bottom:64px; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); background:var(--card); }
+
+    /* CAROUSEL */
+    .carousel { position:relative; height:300px; overflow:hidden; background:#1b3a5c; }
+    .carousel-slides { display:flex; height:100%; transition:transform .6s cubic-bezier(.4,0,.2,1); }
+    .carousel-slide { min-width:100%; height:100%; background-size:cover; background-position:center; position:relative; flex-shrink:0; }
+    .carousel-slide-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(10,20,40,.82) 0%,transparent 55%); display:flex; align-items:flex-end; padding:28px 32px; }
+    .dest-header { color:white; }
+    .dest-dates-tag { display:inline-block; background:var(--terra); color:white; font-size:.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 12px; border-radius:20px; margin-bottom:8px; }
+    .dest-city { font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:700; line-height:1.1; text-shadow:0 2px 10px rgba(0,0,0,.4); }
+    .dest-country { font-size:.85rem; opacity:.8; font-weight:300; margin-top:2px; }
+    .carousel-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.2); backdrop-filter:blur(4px); border:none; color:white; width:40px; height:40px; border-radius:50%; font-size:1.3rem; cursor:pointer; transition:background .2s; display:flex; align-items:center; justify-content:center; z-index:10; }
+    .carousel-btn:hover { background:rgba(255,255,255,.35); }
+    .carousel-prev { left:14px; }
+    .carousel-next { right:14px; }
+    .carousel-dots { position:absolute; bottom:10px; right:16px; display:flex; gap:6px; z-index:10; }
+    .carousel-dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.45); cursor:pointer; transition:background .2s; }
+    .carousel-dot.active { background:white; }
+
+    /* DEST BODY */
+    .dest-body { padding:28px 32px; }
+    .info-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
+    @media(max-width:600px){ .info-grid{grid-template-columns:1fr} .dest-body{padding:18px 16px} .carousel{height:220px} .dest-city{font-size:1.8rem} }
+    .info-block { background:#faf8f4; border:1px solid var(--border); border-radius:10px; padding:16px 18px; }
+    .info-block.full-width { grid-column:1/-1; }
+    .info-label { font-size:.68rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--terra); margin-bottom:8px; }
+    .info-value { font-size:.92rem; color:var(--text); }
+    .info-value strong { color:var(--navy); }
+    .info-value a { color:var(--navy); font-weight:700; text-decoration:none; border-bottom:1.5px solid var(--gold); transition:color .2s; }
+    .info-value a:hover { color:var(--terra); }
+    .transport-row { display:flex; align-items:flex-start; gap:12px; font-size:.9rem; margin-top:6px; }
+    .transport-icon { font-size:1.3rem; flex-shrink:0; margin-top:2px; }
+    .transport-route { font-weight:700; color:var(--navy); }
+    .transport-time { color:var(--terra); font-weight:700; font-size:.85rem; }
+    .transport-detail { color:var(--text-light); font-size:.8rem; margin-top:2px; }
+    .activities-list { list-style:none; display:flex; flex-direction:column; gap:8px; margin-top:6px; }
+    .activities-list li { display:flex; align-items:flex-start; gap:10px; font-size:.9rem; }
+    .activities-list li .dot { width:7px; height:7px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:7px; }
+    .badge { display:inline-flex; align-items:center; gap:4px; font-size:.68rem; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:.5px; text-transform:uppercase; }
+    .badge-pending { background:#fff3cd; color:#856404; border:1px solid #ffd04a; }
+    .badge-reserved { background:#d1f0e0; color:#1a6b3c; border:1px solid #7dcea0; }
+    .daytrip-banner { background:linear-gradient(90deg,#f0ebe0,#e8dfc8); border-left:4px solid var(--gold); padding:10px 16px; border-radius:8px; font-size:.85rem; color:#5a4a1f; margin-bottom:16px; font-weight:600; }
+
+    /* PLAN STEPS */
+    .plan-steps { display:flex; flex-direction:column; gap:0; margin-top:6px; }
+    .plan-step { display:flex; gap:14px; align-items:flex-start; position:relative; }
+    .plan-step:not(:last-child)::after { content:''; position:absolute; left:17px; top:36px; bottom:-8px; width:2px; background:var(--border); }
+    .plan-step-icon { width:34px; height:34px; border-radius:50%; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:.9rem; flex-shrink:0; margin-bottom:16px; }
+    .plan-step-content { padding-top:6px; padding-bottom:10px; }
+    .plan-step-time { font-size:.72rem; font-weight:700; letter-spacing:1px; color:var(--terra); text-transform:uppercase; margin-bottom:2px; }
+    .plan-step-text { font-size:.9rem; color:var(--text); line-height:1.5; }
+    .plan-step-text strong { color:var(--navy); }
+
+    /* PER-DESTINATION ACTIVITIES */
+    .dest-act-section { border-top:1px solid var(--border); padding:20px 32px 24px; background:#fdfcf9; }
+    @media(max-width:600px){ .dest-act-section{padding:16px} }
+    .dest-act-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:10px; }
+    .dest-act-title { font-size:.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--navy); }
+    .btn-add-small { display:inline-flex; align-items:center; gap:6px; background:var(--navy); color:white; border:none; border-radius:20px; padding:8px 16px; font-family:'Lato',sans-serif; font-size:.8rem; font-weight:700; cursor:pointer; transition:background .2s; }
+    .btn-add-small:hover { background:#142d47; }
+    .act-list { display:flex; flex-direction:column; gap:10px; }
+    .act-card { background:white; border:1px solid var(--border); border-radius:10px; padding:14px 16px; display:flex; align-items:flex-start; gap:12px; animation:fadeIn .35s ease; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    .act-card-body { flex:1; }
+    .act-card-text { font-size:.92rem; color:var(--text); line-height:1.5; margin-bottom:4px; }
+    .act-card-author { font-size:.75rem; color:var(--text-light); }
+    .act-delete { background:none; border:none; cursor:pointer; color:#ccc; font-size:1rem; padding:4px 6px; border-radius:6px; transition:color .2s,background .2s; flex-shrink:0; margin-top:-2px; }
+    .act-delete:hover { color:var(--terra); background:#fee8e2; }
+    .act-empty { font-size:.85rem; color:var(--text-light); font-style:italic; }
+
+    /* INLINE ADD FORM */
+    .act-add-form { background:#f0ebe0; border:1px dashed var(--border); border-radius:10px; padding:14px 16px; display:none; margin-top:10px; }
+    .act-add-form.open { display:block; }
+    .act-add-form input, .act-add-form textarea { width:100%; padding:9px 12px; border:1.5px solid var(--border); border-radius:8px; font-family:'Lato',sans-serif; font-size:.88rem; color:var(--text); background:white; margin-bottom:8px; outline:none; transition:border-color .2s; }
+    .act-add-form input:focus, .act-add-form textarea:focus { border-color:var(--navy); }
+    .act-add-form textarea { resize:vertical; min-height:60px; }
+    .act-form-btns { display:flex; gap:8px; }
+    .btn-form-save { flex:2; padding:9px; background:var(--navy); border:none; border-radius:20px; color:white; font-family:'Lato',sans-serif; font-size:.85rem; font-weight:700; cursor:pointer; }
+    .btn-form-save:hover { background:#142d47; }
+    .btn-form-cancel { flex:1; padding:9px; background:none; border:1.5px solid var(--border); border-radius:20px; color:var(--text-light); font-family:'Lato',sans-serif; font-size:.85rem; cursor:pointer; }
+
+    /* FOTOS DEL VIAJE */
+    #fotos-section { background:white; padding:70px 20px; border-top:1px solid var(--border); }
+    .fotos-inner { max-width:900px; margin:0 auto; }
+    .gphoto-card { display:flex; flex-direction:column; align-items:center; gap:0; border-radius:20px; overflow:hidden; box-shadow:var(--shadow); background:var(--card); }
+    .gphoto-preview { width:100%; height:320px; background: linear-gradient(135deg,rgba(27,58,92,.85),rgba(196,96,58,.7)), url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1200&q=80') center/cover no-repeat; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:white; padding:40px; position:relative; }
+    .gphoto-icon { font-size:4rem; margin-bottom:16px; filter:drop-shadow(0 4px 12px rgba(0,0,0,.3)); }
+    .gphoto-title { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; margin-bottom:8px; text-shadow:0 2px 10px rgba(0,0,0,.4); }
+    .gphoto-sub { font-size:.9rem; opacity:.85; font-weight:300; margin-bottom:28px; }
+    .btn-gphoto { display:inline-flex; align-items:center; gap:10px; background:white; color:var(--navy); border:none; border-radius:30px; padding:14px 28px; font-family:'Lato',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; text-decoration:none; transition:transform .15s,box-shadow .15s; box-shadow:0 4px 20px rgba(0,0,0,.2); }
+    .btn-gphoto:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,.25); }
+    .gphoto-info { padding:28px 32px; width:100%; background:#faf8f4; display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:20px; }
+    .gphoto-stat { text-align:center; }
+    .gphoto-stat-icon { font-size:1.8rem; margin-bottom:6px; }
+    .gphoto-stat-text { font-size:.85rem; color:var(--text-light); line-height:1.4; }
+    .gphoto-stat-text strong { display:block; font-size:1rem; color:var(--navy); margin-bottom:2px; }
+
+    /* WISHLIST */
+    #wishlist-section { background:var(--navy); padding:70px 20px; }
+    .wishlist-inner { max-width:900px; margin:0 auto; }
+    .wishlist-header { display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:20px; margin-bottom:40px; }
+    .wishlist-header .section-title { color:white; }
+    .wishlist-header .section-sub { color:rgba(255,255,255,.55); }
+    .btn-add { display:inline-flex; align-items:center; gap:8px; background:var(--terra); color:white; border:none; border-radius:30px; padding:13px 24px; font-family:'Lato',sans-serif; font-size:.9rem; font-weight:700; cursor:pointer; transition:background .2s,transform .1s; white-space:nowrap; }
+    .btn-add:hover { background:#a84e2e; transform:translateY(-1px); }
+    .wish-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px; }
+    .wish-card { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); border-radius:12px; padding:20px; animation:fadeIn .4s ease; }
+    .wish-card-city { font-size:.68rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+    .wish-card-text { font-size:.95rem; color:rgba(255,255,255,.9); line-height:1.5; margin-bottom:12px; }
+    .wish-card-author { font-size:.78rem; color:rgba(255,255,255,.45); }
+    .wish-empty { grid-column:1/-1; text-align:center; padding:40px; color:rgba(255,255,255,.35); font-size:.95rem; }
+
+    /* MODAL */
+    .modal-overlay { display:none; position:fixed; inset:0; background:rgba(10,20,40,.75); z-index:200; align-items:center; justify-content:center; padding:20px; }
+    .modal-overlay.open { display:flex; }
+    .modal { background:white; border-radius:20px; padding:36px; width:100%; max-width:460px; box-shadow:0 20px 60px rgba(0,0,0,.3); animation:modalIn .25s ease; }
+    @keyframes modalIn { from{opacity:0;transform:scale(.94) translateY(10px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    .modal h3 { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--navy); margin-bottom:6px; }
+    .modal p { color:var(--text-light); font-size:.88rem; margin-bottom:28px; }
+    .form-group { margin-bottom:18px; }
+    .form-group label { display:block; font-size:.75rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--navy); margin-bottom:6px; }
+    .form-group input, .form-group select, .form-group textarea { width:100%; padding:12px 16px; border:1.5px solid var(--border); border-radius:10px; font-family:'Lato',sans-serif; font-size:.92rem; color:var(--text); background:#faf8f4; transition:border-color .2s; outline:none; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--navy); }
+    .form-group textarea { resize:vertical; min-height:90px; }
+    .modal-actions { display:flex; gap:12px; margin-top:24px; }
+    .btn-cancel { flex:1; padding:13px; background:#f5f0e8; border:1.5px solid var(--border); border-radius:30px; font-family:'Lato',sans-serif; font-size:.9rem; font-weight:700; color:var(--text-light); cursor:pointer; }
+    .btn-cancel:hover { background:#ede8de; }
+    .btn-submit { flex:2; padding:13px; background:var(--navy); border:none; border-radius:30px; font-family:'Lato',sans-serif; font-size:.9rem; font-weight:700; color:white; cursor:pointer; }
+    .btn-submit:hover { background:#142d47; }
+    .btn-submit:disabled { opacity:.6; cursor:not-allowed; }
+
+    /* TOAST */
+    .toast { position:fixed; bottom:30px; right:30px; background:#1a6b3c; color:white; padding:14px 22px; border-radius:12px; font-size:.9rem; font-weight:700; z-index:300; opacity:0; transform:translateY(10px); transition:opacity .3s,transform .3s; pointer-events:none; }
+    .toast.show { opacity:1; transform:translateY(0); }
+
+    footer { background:#0d1f33; color:rgba(255,255,255,.45); text-align:center; padding:30px 20px; font-size:.82rem; }
+    footer strong { color:rgba(255,255,255,.7); }
   </style>
 </head>
 <body>
 
-<!-- ===== HERO ===== -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-eyebrow">Un viaje para no olvidar</div>
   <h1>Viaje <em>Famiglia</em><br>Barreto</h1>
-  <p class="hero-dates">España &amp; Italia &nbsp;·&nbsp; 9 al 24 de Mayo, 2025</p>
+  <p class="hero-dates">España &amp; Italia &nbsp;·&nbsp; 9 al 24 de Mayo, 2026</p>
   <div class="hero-flags">🇪🇸 🇮🇹</div>
-  <div class="hero-scroll">
-    <span>Ver itinerario</span>
-    <div class="arrow"></div>
-  </div>
+  <div class="hero-scroll"><span>Ver itinerario</span><div class="arrow"></div></div>
 </section>
 
-<!-- ===== STICKY NAV ===== -->
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="#madrid">🏙️ Madrid</a>
@@ -779,22 +204,24 @@
     <a href="#salerno">🌅 Salerno</a>
     <a href="#roma">🏟️ Roma</a>
     <a href="#florencia">🌸 Florencia</a>
-    <a href="#wishlist-section">✨ Lista de deseos</a>
+    <a href="#fotos-section">📸 Fotos</a>
+    <a href="#wishlist-section">✨ Deseos</a>
   </div>
 </nav>
 
-<!-- ===== ITINERARIO ===== -->
+<!-- ITINERARIO -->
 <div class="container">
+  <h2 class="section-title">El itinerario</h2>
+  <p class="section-sub">Destinos, alojamientos, traslados y actividades del viaje</p>
 
-  <div style="padding-top: 8px;">
-    <h2 class="section-title">El itinerario</h2>
-    <p class="section-sub">Todos los destinos, alojamientos y traslados del viaje</p>
-  </div>
-
-  <!-- ========== MADRID ========== -->
+  <!-- ===== MADRID ===== -->
   <div class="destination" id="madrid">
-    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1200&q=80');">
-      <div class="dest-image-overlay">
+    <div class="carousel" data-dest="madrid">
+      <div class="carousel-slides"></div>
+      <button class="carousel-btn carousel-prev" onclick="carouselPrev(this)">‹</button>
+      <button class="carousel-btn carousel-next" onclick="carouselNext(this)">›</button>
+      <div class="carousel-dots"></div>
+      <div class="carousel-slide-overlay">
         <div class="dest-header">
           <div class="dest-dates-tag">9 · 10 Mayo</div>
           <div class="dest-city">Madrid</div>
@@ -806,56 +233,52 @@
       <div class="info-grid">
         <div class="info-block full-width">
           <div class="info-label">🏨 Alojamiento</div>
-          <div class="info-value">
-            <strong>Hotel en Madrid</strong> · Noches: 9 y 10 de mayo (salida el 11 a las 10:00 hs)<br>
-            <a href="https://www.booking.com/hotel/es/madrid-madrid5.es.html" target="_blank">Ver reserva en Booking →</a>
-          </div>
+          <div class="info-value"><strong>Hotel en Madrid</strong> · Noches: 9 y 10 de mayo (salida el 11 a las 10:00 hs)<br><a href="https://www.booking.com/hotel/es/madrid-madrid5.es.html" target="_blank">Ver reserva en Booking →</a></div>
         </div>
         <div class="info-block full-width">
           <div class="info-label">✈️ Llegada de Mamá (Viviana)</div>
           <div class="plan-steps">
-            <div class="plan-step">
-              <div class="plan-step-icon">✈️</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">Sáb. 9 mayo · 12:50 hs · Asunción</div>
-                <div class="plan-step-text">Sale de <strong>Aeropuerto Silvio Pettirossi (ASU)</strong><br>Vuelo Air Europa <strong>UX24</strong> · Ref: 8HEBIX</div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">🛬</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">Dom. 10 mayo · 04:55 hs · Madrid</div>
-                <div class="plan-step-text">Llega al <strong>Aeropuerto Adolfo Suárez Madrid-Barajas (MAD)</strong><br>Duración del vuelo: 11 hs 05 min</div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">🤗</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">04:55 hs — Llegada</div>
-                <div class="plan-step-text"><strong>Anabella la espera en el aeropuerto</strong> y van juntas al hotel a descansar 🏨</div>
-              </div>
-            </div>
+            <div class="plan-step"><div class="plan-step-icon">✈️</div><div class="plan-step-content"><div class="plan-step-time">Sáb. 9 mayo · 12:50 hs · Asunción</div><div class="plan-step-text">Sale de <strong>Aeropuerto Silvio Pettirossi (ASU)</strong> · Vuelo Air Europa <strong>UX24</strong> · Ref: 8HEBIX</div></div></div>
+            <div class="plan-step"><div class="plan-step-icon">🛬</div><div class="plan-step-content"><div class="plan-step-time">Dom. 10 mayo · 04:55 hs · Madrid</div><div class="plan-step-text">Llega al <strong>Aeropuerto Adolfo Suárez Madrid-Barajas (MAD)</strong> · Vuelo: 11 hs 05 min</div></div></div>
+            <div class="plan-step"><div class="plan-step-icon">🤗</div><div class="plan-step-content"><div class="plan-step-time">04:55 hs — Llegada</div><div class="plan-step-text"><strong>Anabella la espera en el aeropuerto</strong> y van juntas al hotel a descansar 🏨</div></div></div>
           </div>
         </div>
         <div class="info-block full-width">
-          <div class="info-label">📋 Actividades &amp; pendientes</div>
+          <div class="info-label">📋 Pendientes</div>
           <ul class="activities-list">
             <li><div class="dot"></div><span>El Pilu llega el <strong>10 de mayo</strong></span></li>
-            <li><div class="dot"></div>
-              <span>Visita al <strong>Museo del Prado</strong> — ¿10 de mayo a la tarde o 11 a la mañana? <span class="badge badge-pending">Pendiente decidir + reservar</span></span>
-            </li>
+            <li><div class="dot"></div><span>Visita al <strong>Museo del Prado</strong> — ¿10 a la tarde o 11 a la mañana? <span class="badge badge-pending">Pendiente decidir + reservar</span></span></li>
           </ul>
         </div>
       </div>
+    </div>
+    <div class="dest-act-section" id="act-section-madrid">
+      <div class="dest-act-header">
+        <div class="dest-act-title">💡 Ideas para Madrid</div>
+        <button class="btn-add-small" onclick="toggleActForm('madrid')">+ Agregar idea</button>
+      </div>
+      <div class="act-add-form" id="act-form-madrid">
+        <input type="text" id="act-quien-madrid" placeholder="Tu nombre" maxlength="40" />
+        <textarea id="act-texto-madrid" placeholder="¿Qué querés hacer en Madrid?"></textarea>
+        <div class="act-form-btns">
+          <button class="btn-form-cancel" onclick="toggleActForm('madrid')">Cancelar</button>
+          <button class="btn-form-save" onclick="saveAct('madrid')">Guardar idea</button>
+        </div>
+      </div>
+      <div class="act-list" id="act-list-madrid"><p class="act-empty">Todavía no hay ideas para Madrid.</p></div>
     </div>
   </div>
 
   <div class="section-divider">· · ·</div>
 
-  <!-- ========== TOLEDO ========== -->
+  <!-- ===== TOLEDO ===== -->
   <div class="destination" id="toledo">
-    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80');">
-      <div class="dest-image-overlay">
+    <div class="carousel" data-dest="toledo">
+      <div class="carousel-slides"></div>
+      <button class="carousel-btn carousel-prev" onclick="carouselPrev(this)">‹</button>
+      <button class="carousel-btn carousel-next" onclick="carouselNext(this)">›</button>
+      <div class="carousel-dots"></div>
+      <div class="carousel-slide-overlay">
         <div class="dest-header">
           <div class="dest-dates-tag">11 Mayo</div>
           <div class="dest-city">Toledo</div>
@@ -868,55 +291,40 @@
         <div class="info-block full-width">
           <div class="info-label">🚆 Plan de traslado · Madrid → Toledo</div>
           <div class="plan-steps">
-            <div class="plan-step">
-              <div class="plan-step-icon">🏨</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">Mañana del 11 · Madrid</div>
-                <div class="plan-step-text">Check-out del hotel · Guardamos las valijas o las llevamos</div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">🚆</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">Mediodía o tarde del 11 <span class="badge badge-pending">Horario por elegir</span></div>
-                <div class="plan-step-text">Tren <strong>Madrid → Toledo</strong> desde Estación de Atocha · <strong>~33 minutos</strong></div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">🏰</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">Llegada a Toledo</div>
-                <div class="plan-step-text">Check-in en <strong>Hotel Abad Toledo</strong> · Tarde/noche para explorar la ciudad medieval</div>
-              </div>
-            </div>
+            <div class="plan-step"><div class="plan-step-icon">🏨</div><div class="plan-step-content"><div class="plan-step-time">Mañana del 11 · Madrid</div><div class="plan-step-text">Check-out del hotel · Salida a la estación de Atocha</div></div></div>
+            <div class="plan-step"><div class="plan-step-icon">🚆</div><div class="plan-step-content"><div class="plan-step-time">Mediodía o tarde del 11 <span class="badge badge-pending">Horario por elegir</span></div><div class="plan-step-text">Tren <strong>Madrid Atocha → Toledo</strong> · ~33 minutos</div></div></div>
+            <div class="plan-step"><div class="plan-step-icon">🏰</div><div class="plan-step-content"><div class="plan-step-time">Llegada a Toledo</div><div class="plan-step-text">Check-in <strong>Hotel Abad Toledo</strong> · <a href="https://www.booking.com/hotel/es/abadtoledo.es.html" target="_blank">Ver reserva →</a></div></div></div>
           </div>
-        </div>
-        <div class="info-block">
-          <div class="info-label">🏨 Alojamiento</div>
-          <div class="info-value">
-            <strong>Hotel Abad Toledo</strong> · 1 noche (11 mayo)<br>
-            <a href="https://www.booking.com/hotel/es/abadtoledo.es.html" target="_blank">Ver reserva en Booking →</a>
-          </div>
-        </div>
-        <div class="info-block full-width">
-          <div class="info-label">📋 Ideas para Toledo</div>
-          <ul class="activities-list">
-            <li><div class="dot"></div><span>Catedral de Toledo (Patrimonio UNESCO)</span></li>
-            <li><div class="dot"></div><span>Barrio judío y sinagoga del Tránsito</span></li>
-            <li><div class="dot"></div><span>Vistas desde el mirador del Valle</span></li>
-            <li><div class="dot"></div><span>Probar mazapán toledano 🍬</span></li>
-          </ul>
         </div>
       </div>
+    </div>
+    <div class="dest-act-section">
+      <div class="dest-act-header">
+        <div class="dest-act-title">💡 Ideas para Toledo</div>
+        <button class="btn-add-small" onclick="toggleActForm('toledo')">+ Agregar idea</button>
+      </div>
+      <div class="act-add-form" id="act-form-toledo">
+        <input type="text" id="act-quien-toledo" placeholder="Tu nombre" maxlength="40" />
+        <textarea id="act-texto-toledo" placeholder="¿Qué querés hacer en Toledo?"></textarea>
+        <div class="act-form-btns">
+          <button class="btn-form-cancel" onclick="toggleActForm('toledo')">Cancelar</button>
+          <button class="btn-form-save" onclick="saveAct('toledo')">Guardar idea</button>
+        </div>
+      </div>
+      <div class="act-list" id="act-list-toledo"><p class="act-empty">Todavía no hay ideas para Toledo.</p></div>
     </div>
   </div>
 
   <div class="section-divider">· · ·</div>
 
-  <!-- ========== VALENCIA ========== -->
+  <!-- ===== VALENCIA ===== -->
   <div class="destination" id="valencia">
-    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1599059813791-c6def6ce9c33?auto=format&fit=crop&w=1200&q=80');">
-      <div class="dest-image-overlay">
+    <div class="carousel" data-dest="valencia">
+      <div class="carousel-slides"></div>
+      <button class="carousel-btn carousel-prev" onclick="carouselPrev(this)">‹</button>
+      <button class="carousel-btn carousel-next" onclick="carouselNext(this)">›</button>
+      <div class="carousel-dots"></div>
+      <div class="carousel-slide-overlay">
         <div class="dest-header">
           <div class="dest-dates-tag">12 – 16 Mayo</div>
           <div class="dest-city">Valencia</div>
@@ -929,55 +337,40 @@
         <div class="info-block full-width">
           <div class="info-label">🚆 Plan de traslado · Toledo → Valencia</div>
           <div class="plan-steps">
-            <div class="plan-step">
-              <div class="plan-step-icon">🏰</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">Mañana del 12 · Toledo</div>
-                <div class="plan-step-text">Última mañana en Toledo · Check-out del hotel</div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">🚆</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">Tarde del 12 <span class="badge badge-pending">Horario pendiente</span></div>
-                <div class="plan-step-text">Tren <strong>Toledo → Valencia</strong> · Aprox. <strong>3–4 horas</strong> de viaje (con trasbordo en Madrid o directo)</div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">🌊</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">Llegada a Valencia</div>
-                <div class="plan-step-text">Check-in en <strong>Apartamentos Navio</strong> · ¡Base de operaciones por 4 días!</div>
-              </div>
-            </div>
+            <div class="plan-step"><div class="plan-step-icon">🏰</div><div class="plan-step-content"><div class="plan-step-time">Mañana del 12 · Toledo</div><div class="plan-step-text">Última mañana en Toledo · Check-out del hotel</div></div></div>
+            <div class="plan-step"><div class="plan-step-icon">🚆</div><div class="plan-step-content"><div class="plan-step-time">Tarde del 12 <span class="badge badge-pending">Horario pendiente</span></div><div class="plan-step-text">Tren <strong>Toledo → Valencia</strong> · Aprox. <strong>3–4 horas</strong></div></div></div>
+            <div class="plan-step"><div class="plan-step-icon">🌊</div><div class="plan-step-content"><div class="plan-step-time">Llegada a Valencia</div><div class="plan-step-text">Check-in <strong>Apartamentos Navio</strong> · <a href="https://www.booking.com/hotel/es/apartamentos-navio.es.html" target="_blank">Ver reserva →</a> · ¡Base de operaciones por 4 días!</div></div></div>
           </div>
-        </div>
-        <div class="info-block">
-          <div class="info-label">🏨 Alojamiento</div>
-          <div class="info-value">
-            <strong>Apartamentos Navio</strong> · 12 al 15 de mayo<br>
-            <a href="https://www.booking.com/hotel/es/apartamentos-navio.es.html" target="_blank">Ver reserva en Booking →</a>
-          </div>
-        </div>
-        <div class="info-block full-width">
-          <div class="info-label">📋 Ideas para Valencia</div>
-          <ul class="activities-list">
-            <li><div class="dot"></div><span>Ciudad de las Artes y las Ciencias</span></li>
-            <li><div class="dot"></div><span>Playa de la Malvarrosa</span></li>
-            <li><div class="dot"></div><span>Mercado Central y paella original</span></li>
-            <li><div class="dot"></div><span>Barrio del Carmen y casco histórico</span></li>
-          </ul>
         </div>
       </div>
+    </div>
+    <div class="dest-act-section">
+      <div class="dest-act-header">
+        <div class="dest-act-title">💡 Ideas para Valencia</div>
+        <button class="btn-add-small" onclick="toggleActForm('valencia')">+ Agregar idea</button>
+      </div>
+      <div class="act-add-form" id="act-form-valencia">
+        <input type="text" id="act-quien-valencia" placeholder="Tu nombre" maxlength="40" />
+        <textarea id="act-texto-valencia" placeholder="¿Qué querés hacer en Valencia?"></textarea>
+        <div class="act-form-btns">
+          <button class="btn-form-cancel" onclick="toggleActForm('valencia')">Cancelar</button>
+          <button class="btn-form-save" onclick="saveAct('valencia')">Guardar idea</button>
+        </div>
+      </div>
+      <div class="act-list" id="act-list-valencia"><p class="act-empty">Todavía no hay ideas para Valencia.</p></div>
     </div>
   </div>
 
   <div class="section-divider">· · ·</div>
 
-  <!-- ========== GRANADA (DÍA DE EXCURSIÓN) ========== -->
+  <!-- ===== GRANADA ===== -->
   <div class="destination" id="granada">
-    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1585208798174-6cedd4b7a369?auto=format&fit=crop&w=1200&q=80');">
-      <div class="dest-image-overlay">
+    <div class="carousel" data-dest="granada">
+      <div class="carousel-slides"></div>
+      <button class="carousel-btn carousel-prev" onclick="carouselPrev(this)">‹</button>
+      <button class="carousel-btn carousel-next" onclick="carouselNext(this)">›</button>
+      <div class="carousel-dots"></div>
+      <div class="carousel-slide-overlay">
         <div class="dest-header">
           <div class="dest-dates-tag">15 Mayo</div>
           <div class="dest-city">Granada</div>
@@ -986,56 +379,58 @@
       </div>
     </div>
     <div class="dest-body">
-      <div class="daytrip-banner">
-        🚗 Excursión desde Valencia — salida el 15 a la mañana, regreso el 16
-      </div>
+      <div class="daytrip-banner">🚗 Excursión desde Valencia — salida el 15 a la mañana, regreso el 16</div>
       <div class="info-grid">
         <div class="info-block">
           <div class="info-label">🚗 Traslado</div>
-          <div class="info-value">
-            <div class="transport-row">
-              <span class="transport-icon">🚗</span>
-              <div>
-                <div class="transport-route">Valencia → Granada</div>
-                <div class="transport-time">Aprox. 4 horas en auto</div>
-                <div class="transport-detail">Salida mañana del 15 (hora por confirmar)</div>
-              </div>
-            </div>
-          </div>
+          <div class="info-value"><div class="transport-row"><span class="transport-icon">🚗</span><div><div class="transport-route">Valencia → Granada</div><div class="transport-time">Aprox. 4 horas en auto</div><div class="transport-detail">Salida mañana del 15</div></div></div></div>
         </div>
         <div class="info-block">
           <div class="info-label">🏨 Alojamiento (1 noche)</div>
-          <div class="info-value">
-            Noche del 15 en Granada <span class="badge badge-pending">Pendiente reservar</span>
-          </div>
+          <div class="info-value">Noche del 15 en Granada <span class="badge badge-pending">Pendiente reservar</span></div>
         </div>
         <div class="info-block full-width">
           <div class="info-label">🏛️ Actividades</div>
           <ul class="activities-list">
-            <li><div class="dot"></div><span><strong>La Alhambra</strong> — visita el 15 de mayo <span class="badge badge-pending">Pendiente reservar entrada</span></span></li>
-            <li><div class="dot"></div><span>Barrio del Albaicín (Patrimonio UNESCO)</span></li>
-            <li><div class="dot"></div><span>Mirador de San Nicolás al atardecer</span></li>
+            <li><div class="dot"></div><span><strong>La Alhambra</strong> — visita el 15 <span class="badge badge-pending">Pendiente reservar entrada</span></span></li>
+            <li><div class="dot"></div><span>Barrio del Albaicín · Mirador de San Nicolás al atardecer</span></li>
           </ul>
         </div>
       </div>
+    </div>
+    <div class="dest-act-section">
+      <div class="dest-act-header">
+        <div class="dest-act-title">💡 Ideas para Granada</div>
+        <button class="btn-add-small" onclick="toggleActForm('granada')">+ Agregar idea</button>
+      </div>
+      <div class="act-add-form" id="act-form-granada">
+        <input type="text" id="act-quien-granada" placeholder="Tu nombre" maxlength="40" />
+        <textarea id="act-texto-granada" placeholder="¿Qué querés hacer en Granada?"></textarea>
+        <div class="act-form-btns">
+          <button class="btn-form-cancel" onclick="toggleActForm('granada')">Cancelar</button>
+          <button class="btn-form-save" onclick="saveAct('granada')">Guardar idea</button>
+        </div>
+      </div>
+      <div class="act-list" id="act-list-granada"><p class="act-empty">Todavía no hay ideas para Granada.</p></div>
     </div>
   </div>
 
   <div class="section-divider">· · ·</div>
 
-  <!-- VUELTA VALENCIA (nota) -->
-  <div style="background: var(--card); border-radius: 12px; padding: 20px 24px; border: 1px solid var(--border); margin-bottom: 64px; display: flex; gap: 14px; align-items: flex-start;">
-    <span style="font-size: 1.4rem;">🏠</span>
-    <div>
-      <div style="font-weight:700; color: var(--navy); margin-bottom: 4px;">16 mayo — Vuelta a Valencia</div>
-      <div style="font-size: 0.88rem; color: var(--text-light);">Regreso desde Granada. Noche en casa del Pilu o de Anabella.</div>
-    </div>
+  <!-- 16 mayo -->
+  <div style="background:var(--card);border-radius:12px;padding:18px 24px;border:1px solid var(--border);margin-bottom:48px;display:flex;gap:14px;align-items:flex-start;">
+    <span style="font-size:1.4rem;">🏠</span>
+    <div><div style="font-weight:700;color:var(--navy);margin-bottom:4px;">16 mayo — Vuelta a Valencia</div><div style="font-size:.88rem;color:var(--text-light);">Regreso desde Granada. Noche en casa del Pilu o de Anabella.</div></div>
   </div>
 
-  <!-- ========== NÁPOLES ========== -->
+  <!-- ===== NÁPOLES ===== -->
   <div class="destination" id="napoles">
-    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80');">
-      <div class="dest-image-overlay">
+    <div class="carousel" data-dest="napoles">
+      <div class="carousel-slides"></div>
+      <button class="carousel-btn carousel-prev" onclick="carouselPrev(this)">‹</button>
+      <button class="carousel-btn carousel-next" onclick="carouselNext(this)">›</button>
+      <div class="carousel-dots"></div>
+      <div class="carousel-slide-overlay">
         <div class="dest-header">
           <div class="dest-dates-tag">17 · 18 Mayo</div>
           <div class="dest-city">Nápoles</div>
@@ -1048,63 +443,40 @@
         <div class="info-block full-width">
           <div class="info-label">✈️ Plan de llegada · Valencia → Nápoles</div>
           <div class="plan-steps">
-            <div class="plan-step">
-              <div class="plan-step-icon">🏠</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">Mañana del 17 · Valencia</div>
-                <div class="plan-step-text">Última mañana en casa · Preparamos las valijas · Salida al aeropuerto</div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">✈️</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">17 mayo · 15:15 hs · Valencia (VLC)</div>
-                <div class="plan-step-text">Vuelo <strong>Valencia → Nápoles</strong> <span class="badge badge-reserved">✓ Reservado</span></div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">🛬</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">17 mayo · 17:25 hs · Nápoles (NAP)</div>
-                <div class="plan-step-text">Llegamos al <strong>Aeropuerto de Nápoles-Capodichino</strong> · Metro o taxi al apartamento (~30 min)</div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">🍕</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">Noche del 17</div>
-                <div class="plan-step-text">Check-in en <strong>NL House Nápoles</strong> · Primera cena napolitana 🇮🇹</div>
-              </div>
-            </div>
+            <div class="plan-step"><div class="plan-step-icon">✈️</div><div class="plan-step-content"><div class="plan-step-time">17 mayo · 15:15 hs · Valencia (VLC)</div><div class="plan-step-text">Vuelo <strong>Valencia → Nápoles</strong> <span class="badge badge-reserved">✓ Reservado</span></div></div></div>
+            <div class="plan-step"><div class="plan-step-icon">🛬</div><div class="plan-step-content"><div class="plan-step-time">17 mayo · 17:25 hs · Nápoles (NAP)</div><div class="plan-step-text">Llegada al <strong>Aeropuerto de Nápoles-Capodichino</strong> · Metro o taxi al apartamento</div></div></div>
+            <div class="plan-step"><div class="plan-step-icon">🍕</div><div class="plan-step-content"><div class="plan-step-time">Noche del 17</div><div class="plan-step-text">Check-in <strong>NL House Nápoles</strong> · <a href="https://www.booking.com/hotel/it/nl-house.es.html" target="_blank">Ver reserva →</a> · Primera cena napolitana 🇮🇹</div></div></div>
           </div>
-        </div>
-        <div class="info-block full-width">
-          <div class="info-label">🏨 Alojamiento</div>
-          <div class="info-value">
-            <strong>NL House Nápoles</strong> · 17, 18 y 19 de mayo (salida 10:00 hs del 19)<br>
-            <a href="https://www.booking.com/hotel/it/nl-house.es.html" target="_blank">Ver reserva en Booking →</a>
-            &nbsp;<span class="badge badge-reserved">✓ Reservado</span>
-          </div>
-        </div>
-        <div class="info-block full-width">
-          <div class="info-label">📋 Ideas para Nápoles</div>
-          <ul class="activities-list">
-            <li><div class="dot"></div><span>Pizza napolitana en la pizzería histórica (¡obligatorio!)</span></li>
-            <li><div class="dot"></div><span>Museo Arqueológico Nacional</span></li>
-            <li><div class="dot"></div><span>Castel dell'Ovo y paseo por el Lungomare</span></li>
-            <li><div class="dot"></div><span>Excursión a Pompeya (45 min desde Nápoles)</span></li>
-          </ul>
         </div>
       </div>
+    </div>
+    <div class="dest-act-section">
+      <div class="dest-act-header">
+        <div class="dest-act-title">💡 Ideas para Nápoles</div>
+        <button class="btn-add-small" onclick="toggleActForm('napoles')">+ Agregar idea</button>
+      </div>
+      <div class="act-add-form" id="act-form-napoles">
+        <input type="text" id="act-quien-napoles" placeholder="Tu nombre" maxlength="40" />
+        <textarea id="act-texto-napoles" placeholder="¿Qué querés hacer en Nápoles?"></textarea>
+        <div class="act-form-btns">
+          <button class="btn-form-cancel" onclick="toggleActForm('napoles')">Cancelar</button>
+          <button class="btn-form-save" onclick="saveAct('napoles')">Guardar idea</button>
+        </div>
+      </div>
+      <div class="act-list" id="act-list-napoles"><p class="act-empty">Todavía no hay ideas para Nápoles.</p></div>
     </div>
   </div>
 
   <div class="section-divider">· · ·</div>
 
-  <!-- ========== POSITANO ========== -->
+  <!-- ===== POSITANO ===== -->
   <div class="destination" id="positano">
-    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1534308143923-c3aa5eb35b65?auto=format&fit=crop&w=1200&q=80');">
-      <div class="dest-image-overlay">
+    <div class="carousel" data-dest="positano">
+      <div class="carousel-slides"></div>
+      <button class="carousel-btn carousel-prev" onclick="carouselPrev(this)">‹</button>
+      <button class="carousel-btn carousel-next" onclick="carouselNext(this)">›</button>
+      <div class="carousel-dots"></div>
+      <div class="carousel-slide-overlay">
         <div class="dest-header">
           <div class="dest-dates-tag">19 Mayo · Día completo</div>
           <div class="dest-city">Positano</div>
@@ -1113,55 +485,45 @@
       </div>
     </div>
     <div class="dest-body">
-      <div class="daytrip-banner">
-        ⛵ Excursión en ferry desde Nápoles · Vuelta a Salerno
-      </div>
+      <div class="daytrip-banner">⛵ Excursión en ferry desde Nápoles · Vuelta a Salerno</div>
       <div class="info-grid">
         <div class="info-block">
           <div class="info-label">⛵ Ferry de ida</div>
-          <div class="info-value">
-            <div class="transport-row">
-              <span class="transport-icon">⛵</span>
-              <div>
-                <div class="transport-route">Naples Beverello → Port of Positano</div>
-                <div class="transport-time">Sale: 10:45 · Llega: 12:00</div>
-                <div class="transport-detail">19 de mayo <span class="badge badge-reserved">✓ Reservado</span></div>
-              </div>
-            </div>
-          </div>
+          <div class="info-value"><div class="transport-row"><span class="transport-icon">⛵</span><div><div class="transport-route">Naples Beverello → Port of Positano</div><div class="transport-time">Sale: 10:45 · Llega: 12:00</div><div class="transport-detail">19 mayo <span class="badge badge-reserved">✓ Reservado</span></div></div></div></div>
         </div>
         <div class="info-block">
           <div class="info-label">⛵ Ferry de vuelta</div>
-          <div class="info-value">
-            <div class="transport-row">
-              <span class="transport-icon">⛵</span>
-              <div>
-                <div class="transport-route">Port of Positano → Salerno Molo Concordia</div>
-                <div class="transport-time">Sale: 18:45 · Llega: 19:20</div>
-                <div class="transport-detail">19 de mayo <span class="badge badge-reserved">✓ Reservado</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="info-block full-width">
-          <div class="info-label">📋 Ideas para Positano</div>
-          <ul class="activities-list">
-            <li><div class="dot"></div><span>Playa Grande y playa Fornillo</span></li>
-            <li><div class="dot"></div><span>Helado mirando el mar (obligatorio 🍦)</span></li>
-            <li><div class="dot"></div><span>Subir por los callejones floridos del pueblo</span></li>
-            <li><div class="dot"></div><span>Almuerzo con vista al mar</span></li>
-          </ul>
+          <div class="info-value"><div class="transport-row"><span class="transport-icon">⛵</span><div><div class="transport-route">Port of Positano → Salerno Molo Concordia</div><div class="transport-time">Sale: 18:45 · Llega: 19:20</div><div class="transport-detail">19 mayo <span class="badge badge-reserved">✓ Reservado</span></div></div></div></div>
         </div>
       </div>
+    </div>
+    <div class="dest-act-section">
+      <div class="dest-act-header">
+        <div class="dest-act-title">💡 Ideas para Positano</div>
+        <button class="btn-add-small" onclick="toggleActForm('positano')">+ Agregar idea</button>
+      </div>
+      <div class="act-add-form" id="act-form-positano">
+        <input type="text" id="act-quien-positano" placeholder="Tu nombre" maxlength="40" />
+        <textarea id="act-texto-positano" placeholder="¿Qué querés hacer en Positano?"></textarea>
+        <div class="act-form-btns">
+          <button class="btn-form-cancel" onclick="toggleActForm('positano')">Cancelar</button>
+          <button class="btn-form-save" onclick="saveAct('positano')">Guardar idea</button>
+        </div>
+      </div>
+      <div class="act-list" id="act-list-positano"><p class="act-empty">Todavía no hay ideas para Positano.</p></div>
     </div>
   </div>
 
   <div class="section-divider">· · ·</div>
 
-  <!-- ========== SALERNO ========== -->
+  <!-- ===== SALERNO ===== -->
   <div class="destination" id="salerno">
-    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1590523741831-ab710947c2cd?auto=format&fit=crop&w=1200&q=80');">
-      <div class="dest-image-overlay">
+    <div class="carousel" data-dest="salerno">
+      <div class="carousel-slides"></div>
+      <button class="carousel-btn carousel-prev" onclick="carouselPrev(this)">‹</button>
+      <button class="carousel-btn carousel-next" onclick="carouselNext(this)">›</button>
+      <div class="carousel-dots"></div>
+      <div class="carousel-slide-overlay">
         <div class="dest-header">
           <div class="dest-dates-tag">19 · 20 Mayo</div>
           <div class="dest-city">Salerno</div>
@@ -1174,55 +536,39 @@
         <div class="info-block full-width">
           <div class="info-label">⛵ Plan de llegada · Positano → Salerno</div>
           <div class="plan-steps">
-            <div class="plan-step">
-              <div class="plan-step-icon">⛵</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">19 mayo · 18:45 hs · Port of Positano</div>
-                <div class="plan-step-text">Ferry <strong>Positano → Salerno Molo Concordia</strong> <span class="badge badge-reserved">✓ Reservado</span></div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">🌅</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">19 mayo · 19:20 hs · Salerno</div>
-                <div class="plan-step-text">Llegada al puerto de Salerno · Caminata o taxi al apartamento</div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">🏠</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">Noche del 19</div>
-                <div class="plan-step-text">Check-in en <strong>Lubea Apartment Salerno</strong> · Cena en el centro histórico</div>
-              </div>
-            </div>
+            <div class="plan-step"><div class="plan-step-icon">⛵</div><div class="plan-step-content"><div class="plan-step-time">19 mayo · 18:45 hs</div><div class="plan-step-text">Ferry <strong>Positano → Salerno Molo Concordia</strong> · Llega 19:20</div></div></div>
+            <div class="plan-step"><div class="plan-step-icon">🏠</div><div class="plan-step-content"><div class="plan-step-time">Noche del 19</div><div class="plan-step-text">Check-in <strong>Lubea Apartment Salerno</strong> · <a href="https://www.booking.com/hotel/it/lubea-apartment.es.html" target="_blank">Ver reserva →</a> <span class="badge badge-reserved">✓ Reservado</span></div></div></div>
           </div>
-        </div>
-        <div class="info-block full-width">
-          <div class="info-label">🏨 Alojamiento</div>
-          <div class="info-value">
-            <strong>Lubea Apartment Salerno</strong> · Noches: 19 y 20 de mayo (salida 10:00 hs del 20)<br>
-            <a href="https://www.booking.com/hotel/it/lubea-apartment.es.html" target="_blank">Ver reserva en Booking →</a>
-            &nbsp;<span class="badge badge-reserved">✓ Reservado</span>
-          </div>
-        </div>
-        <div class="info-block full-width">
-          <div class="info-label">📋 Ideas para Salerno</div>
-          <ul class="activities-list">
-            <li><div class="dot"></div><span>Paseo por el Lungomare Trieste</span></li>
-            <li><div class="dot"></div><span>Catedral de San Matteo</span></li>
-            <li><div class="dot"></div><span>Cena en el centro histórico</span></li>
-          </ul>
         </div>
       </div>
+    </div>
+    <div class="dest-act-section">
+      <div class="dest-act-header">
+        <div class="dest-act-title">💡 Ideas para Salerno</div>
+        <button class="btn-add-small" onclick="toggleActForm('salerno')">+ Agregar idea</button>
+      </div>
+      <div class="act-add-form" id="act-form-salerno">
+        <input type="text" id="act-quien-salerno" placeholder="Tu nombre" maxlength="40" />
+        <textarea id="act-texto-salerno" placeholder="¿Qué querés hacer en Salerno?"></textarea>
+        <div class="act-form-btns">
+          <button class="btn-form-cancel" onclick="toggleActForm('salerno')">Cancelar</button>
+          <button class="btn-form-save" onclick="saveAct('salerno')">Guardar idea</button>
+        </div>
+      </div>
+      <div class="act-list" id="act-list-salerno"><p class="act-empty">Todavía no hay ideas para Salerno.</p></div>
     </div>
   </div>
 
   <div class="section-divider">· · ·</div>
 
-  <!-- ========== ROMA ========== -->
+  <!-- ===== ROMA ===== -->
   <div class="destination" id="roma">
-    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1200&q=80');">
-      <div class="dest-image-overlay">
+    <div class="carousel" data-dest="roma">
+      <div class="carousel-slides"></div>
+      <button class="carousel-btn carousel-prev" onclick="carouselPrev(this)">‹</button>
+      <button class="carousel-btn carousel-next" onclick="carouselNext(this)">›</button>
+      <div class="carousel-dots"></div>
+      <div class="carousel-slide-overlay">
         <div class="dest-header">
           <div class="dest-dates-tag">20 – 22 Mayo</div>
           <div class="dest-city">Roma</div>
@@ -1233,60 +579,48 @@
     <div class="dest-body">
       <div class="info-grid">
         <div class="info-block full-width">
-          <div class="info-label">🚄 Plan de traslado · Salerno → Roma</div>
+          <div class="info-label">🚄 Plan de traslado · Salerno → Roma (Italo)</div>
           <div class="plan-steps">
-            <div class="plan-step">
-              <div class="plan-step-icon">🌅</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">Mañana del 20 · Salerno</div>
-                <div class="plan-step-text">Última mañana en Salerno · Check-out a las <strong>10:00 hs</strong> · Exploramos o descansamos hasta el tren</div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">🚄</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">20 mayo · 16:25 hs · Salerno</div>
-                <div class="plan-step-text">Tren <strong>Italo N° 9954</strong> · Vagón 3 · Asientos 7, 8 y 9 · <em>Prima Business</em><br>Código: <strong>JHSLVA</strong> <span class="badge badge-reserved">✓ Reservado</span></div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">🏟️</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">20 mayo · 18:30 hs · Roma Termini</div>
-                <div class="plan-step-text">Llegada a <strong>Roma Termini</strong> · Metro o taxi al apartamento · <em>Benvenute a Roma!</em> 🎉</div>
-              </div>
-            </div>
+            <div class="plan-step"><div class="plan-step-icon">🚄</div><div class="plan-step-content"><div class="plan-step-time">20 mayo · 16:25 hs · Salerno</div><div class="plan-step-text">Tren <strong>Italo N° 9954</strong> · Vagón 3 · Asientos 7, 8 y 9 · <em>Prima Business</em> · Código: <strong>JHSLVA</strong> <span class="badge badge-reserved">✓ Reservado</span></div></div></div>
+            <div class="plan-step"><div class="plan-step-icon">🏟️</div><div class="plan-step-content"><div class="plan-step-time">20 mayo · 18:30 hs · Roma Termini</div><div class="plan-step-text">Check-in <strong>Colosseum Home Roma</strong> · <a href="https://www.booking.com/hotel/it/colosseum-home-roma1.es.html" target="_blank">Ver reserva →</a> · ¡Benvenute a Roma! 🎉</div></div></div>
           </div>
         </div>
         <div class="info-block full-width">
-          <div class="info-label">🏨 Alojamiento</div>
-          <div class="info-value">
-            <strong>Colosseum Home Roma</strong> · 20, 21 y 22 de mayo (salida 10:00 hs del 22)<br>
-            <a href="https://www.booking.com/hotel/it/colosseum-home-roma1.es.html" target="_blank">Ver reserva en Booking →</a>
-            &nbsp;<span class="badge badge-reserved">✓ Reservado</span>
-          </div>
-        </div>
-        <div class="info-block full-width">
-          <div class="info-label">📋 Actividades en Roma</div>
+          <div class="info-label">📋 Pendientes en Roma</div>
           <ul class="activities-list">
             <li><div class="dot"></div><span><strong>Ópera Romana</strong> <span class="badge badge-pending">Pendiente reservar fecha</span></span></li>
-            <li><div class="dot"></div><span>Coliseo y Foro Romano</span></li>
-            <li><div class="dot"></div><span>Ciudad del Vaticano y Capilla Sixtina</span></li>
-            <li><div class="dot"></div><span>Fontana di Trevi (tirar la moneda 🪙)</span></li>
-            <li><div class="dot"></div><span>Piazza Navona y Campo de' Fiori</span></li>
-            <li><div class="dot"></div><span>Aperitivo en Trastevere</span></li>
+            <li><div class="dot"></div><span>Coliseo · Vaticano · Fontana di Trevi · Trastevere</span></li>
           </ul>
         </div>
       </div>
+    </div>
+    <div class="dest-act-section">
+      <div class="dest-act-header">
+        <div class="dest-act-title">💡 Ideas para Roma</div>
+        <button class="btn-add-small" onclick="toggleActForm('roma')">+ Agregar idea</button>
+      </div>
+      <div class="act-add-form" id="act-form-roma">
+        <input type="text" id="act-quien-roma" placeholder="Tu nombre" maxlength="40" />
+        <textarea id="act-texto-roma" placeholder="¿Qué querés hacer en Roma?"></textarea>
+        <div class="act-form-btns">
+          <button class="btn-form-cancel" onclick="toggleActForm('roma')">Cancelar</button>
+          <button class="btn-form-save" onclick="saveAct('roma')">Guardar idea</button>
+        </div>
+      </div>
+      <div class="act-list" id="act-list-roma"><p class="act-empty">Todavía no hay ideas para Roma.</p></div>
     </div>
   </div>
 
   <div class="section-divider">· · ·</div>
 
-  <!-- ========== FLORENCIA ========== -->
+  <!-- ===== FLORENCIA ===== -->
   <div class="destination" id="florencia">
-    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1541370976299-4d24ebbc9077?auto=format&fit=crop&w=1200&q=80');">
-      <div class="dest-image-overlay">
+    <div class="carousel" data-dest="florencia">
+      <div class="carousel-slides"></div>
+      <button class="carousel-btn carousel-prev" onclick="carouselPrev(this)">‹</button>
+      <button class="carousel-btn carousel-next" onclick="carouselNext(this)">›</button>
+      <div class="carousel-dots"></div>
+      <div class="carousel-slide-overlay">
         <div class="dest-header">
           <div class="dest-dates-tag">22 – 24 Mayo</div>
           <div class="dest-city">Florencia</div>
@@ -1299,145 +633,114 @@
         <div class="info-block full-width">
           <div class="info-label">🚄 Plan de traslado · Roma → Florencia</div>
           <div class="plan-steps">
-            <div class="plan-step">
-              <div class="plan-step-icon">🏟️</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">Mañana del 22 · Roma</div>
-                <div class="plan-step-text">Check-out del apartamento a las <strong>10:00 hs</strong></div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">🚄</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">22 mayo <span class="badge badge-pending">Horario pendiente · Por reservar</span></div>
-                <div class="plan-step-text">Tren <strong>Roma → Florencia Santa Maria Novella</strong> · Aprox. <strong>1h 30 min</strong></div>
-              </div>
-            </div>
-            <div class="plan-step">
-              <div class="plan-step-icon">🌸</div>
-              <div class="plan-step-content">
-                <div class="plan-step-time">Llegada a Florencia</div>
-                <div class="plan-step-text">Check-in en el alojamiento <span class="badge badge-pending">Pendiente reservar</span> · ¡Última ciudad del viaje!</div>
-              </div>
-            </div>
+            <div class="plan-step"><div class="plan-step-icon">🚄</div><div class="plan-step-content"><div class="plan-step-time">22 mayo <span class="badge badge-pending">Horario pendiente · Por reservar</span></div><div class="plan-step-text">Tren <strong>Roma → Florencia Santa Maria Novella</strong> · Aprox. <strong>1h 30 min</strong></div></div></div>
+            <div class="plan-step"><div class="plan-step-icon">🌸</div><div class="plan-step-content"><div class="plan-step-time">Llegada a Florencia</div><div class="plan-step-text">Check-in alojamiento <span class="badge badge-pending">Pendiente reservar</span> · ¡Última ciudad del viaje!</div></div></div>
           </div>
-        </div>
-        <div class="info-block">
-          <div class="info-label">🏨 Alojamiento</div>
-          <div class="info-value">
-            Florencia · 22 y 23 de mayo<br>
-            <span class="badge badge-pending">Pendiente reservar</span>
-          </div>
-        </div>
-        <div class="info-block full-width">
-          <div class="info-label">📋 Ideas para Florencia</div>
-          <ul class="activities-list">
-            <li><div class="dot"></div><span>Galería Uffizi (David de Botticelli)</span></li>
-            <li><div class="dot"></div><span>Duomo · Santa Maria del Fiore</span></li>
-            <li><div class="dot"></div><span>Ponte Vecchio al atardecer</span></li>
-            <li><div class="dot"></div><span>Piazzale Michelangelo (vistas increíbles)</span></li>
-            <li><div class="dot"></div><span>Gelato en Gelateria dei Neri 🍦</span></li>
-          </ul>
         </div>
       </div>
+    </div>
+    <div class="dest-act-section">
+      <div class="dest-act-header">
+        <div class="dest-act-title">💡 Ideas para Florencia</div>
+        <button class="btn-add-small" onclick="toggleActForm('florencia')">+ Agregar idea</button>
+      </div>
+      <div class="act-add-form" id="act-form-florencia">
+        <input type="text" id="act-quien-florencia" placeholder="Tu nombre" maxlength="40" />
+        <textarea id="act-texto-florencia" placeholder="¿Qué querés hacer en Florencia?"></textarea>
+        <div class="act-form-btns">
+          <button class="btn-form-cancel" onclick="toggleActForm('florencia')">Cancelar</button>
+          <button class="btn-form-save" onclick="saveAct('florencia')">Guardar idea</button>
+        </div>
+      </div>
+      <div class="act-list" id="act-list-florencia"><p class="act-empty">Todavía no hay ideas para Florencia.</p></div>
     </div>
   </div>
 
   <!-- PARTIDAS -->
   <div class="section-divider">· · ·</div>
-
-  <div style="background: var(--card); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 12px;">
-    <div style="background: var(--navy); padding: 20px 28px;">
-      <div style="font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 6px;">24 Mayo · Fin del viaje</div>
-      <div style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: white; font-weight: 700;">Las despedidas ✈️</div>
+  <div style="background:var(--card);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:12px;">
+    <div style="background:var(--navy);padding:20px 28px;">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:6px;">24 Mayo · Fin del viaje</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.8rem;color:white;font-weight:700;">Las despedidas ✈️</div>
     </div>
-    <div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 16px;">
-      <div class="info-block">
-        <div class="info-label">🚆 Tren Florencia → Roma (mañana del 24)</div>
-        <div class="info-value">
-          <span class="badge badge-pending">Horario pendiente · Por reservar</span>
-        </div>
-      </div>
-      <div class="info-block">
-        <div class="info-label">✈️ Vuelo MA · Roma → Madrid</div>
-        <div class="info-value">
-          <strong>Tarde del 24 de mayo</strong><br>
-          <span class="badge badge-pending">Confirmar horario</span>
-        </div>
-      </div>
-      <div class="info-block">
-        <div class="info-label">✈️ Vuelo Anabella · Roma → Valencia</div>
-        <div class="info-value">
-          <strong>Tarde del 24 de mayo</strong>
-        </div>
-      </div>
-      <div class="info-block">
-        <div class="info-label">✈️ Vuelo MA · Madrid → Asunción</div>
-        <div class="info-value">
-          <strong>Mismo aeropuerto · Sale 23:45 del 24 · Llega 06:25 del 25</strong>
-          <span class="badge badge-reserved" style="margin-left: 8px;">✓ Reservado</span>
-        </div>
-      </div>
+    <div style="padding:24px 28px;display:flex;flex-direction:column;gap:16px;">
+      <div class="info-block"><div class="info-label">🚄 Tren Florencia → Roma (mañana del 24)</div><div class="info-value"><span class="badge badge-pending">Horario pendiente · Por reservar</span></div></div>
+      <div class="info-block"><div class="info-label">✈️ Vuelo MA · Roma → Madrid · tarde del 24</div><div class="info-value"><span class="badge badge-pending">Confirmar horario</span></div></div>
+      <div class="info-block"><div class="info-label">✈️ Vuelo MA · Madrid → Asunción</div><div class="info-value"><strong>Sale 23:45 del 24 · Llega 06:25 del 25</strong> <span class="badge badge-reserved">✓ Reservado</span></div></div>
+      <div class="info-block"><div class="info-label">✈️ Vuelo Anabella · Roma → Valencia · tarde del 24</div><div class="info-value">Regreso a casa 🏠</div></div>
     </div>
   </div>
 
-</div><!-- end .container -->
+</div><!-- end container -->
 
-<!-- ===== WISHLIST SECTION ===== -->
-<section id="wishlist-section">
-  <div class="wishlist-inner">
-    <div class="wishlist-header">
-      <div>
-        <h2 class="section-title">✨ Lista de deseos</h2>
-        <p class="section-sub">¿Qué quieren hacer? Agreguen sus ideas para el viaje</p>
+<!-- ===== FOTOS DEL VIAJE ===== -->
+<section id="fotos-section">
+  <div class="fotos-inner">
+    <h2 class="section-title">📸 Fotos del viaje</h2>
+    <p class="section-sub">El álbum compartido de la famiglia — todos pueden ver y subir fotos</p>
+
+    <div class="gphoto-card">
+      <div class="gphoto-preview">
+        <div class="gphoto-icon">📷</div>
+        <div class="gphoto-title">Álbum Famiglia Barreto</div>
+        <div class="gphoto-sub">España &amp; Italia · Mayo 2026 · Todos pueden agregar fotos</div>
+        <a class="btn-gphoto" href="https://photos.app.goo.gl/y1FxuUqRARWeXjis6" target="_blank">
+          <span>🖼️</span> Abrir álbum de fotos
+        </a>
       </div>
-      <button class="btn-add" onclick="openModal()">
-        <span>+</span> Agregar idea
-      </button>
-    </div>
-
-    <!-- Firebase notice (se oculta automáticamente cuando Firebase está configurado) -->
-    <div class="firebase-notice" id="firebase-notice">
-      ⚙️ <strong>Configuración pendiente:</strong> Para que las ideas se guarden para todos,
-      hay que conectar Firebase. <a href="https://github.com/Anabellabarretto/viaje-famiglia#configurar-firebase" target="_blank" style="color: #3d3200;">Ver instrucciones →</a>
-      <br><small style="opacity:0.7;">Por ahora las ideas se guardan solo en tu dispositivo.</small>
-    </div>
-
-    <div class="wish-grid" id="wish-grid">
-      <div class="wish-loading">Cargando ideas... 🌍</div>
+      <div class="gphoto-info">
+        <div class="gphoto-stat">
+          <div class="gphoto-stat-icon">📱</div>
+          <div class="gphoto-stat-text"><strong>Desde el celular</strong>Abrí Google Photos → buscá el álbum compartido → subí tus fotos</div>
+        </div>
+        <div class="gphoto-stat">
+          <div class="gphoto-stat-icon">👨‍👩‍👧‍👦</div>
+          <div class="gphoto-stat-text"><strong>Para todos</strong>Cualquiera con el link puede ver y agregar fotos al álbum</div>
+        </div>
+        <div class="gphoto-stat">
+          <div class="gphoto-stat-icon">☁️</div>
+          <div class="gphoto-stat-text"><strong>Se guarda en la nube</strong>Las fotos quedan guardadas para siempre en Google Photos</div>
+        </div>
+        <div class="gphoto-stat">
+          <div class="gphoto-stat-icon">💾</div>
+          <div class="gphoto-stat-text"><strong>Descargá todo</strong>Al volver podés bajar todas las fotos del viaje juntas</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== MODAL ===== -->
-<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
-  <div class="modal">
-    <h3>Agregar una idea ✨</h3>
-    <p>Contanos qué querés hacer o conocer durante el viaje</p>
-    <div class="form-group">
-      <label>Tu nombre</label>
-      <input type="text" id="input-quien" placeholder="Ej: Pilu, Mamá, Anabella..." maxlength="40" />
+<!-- ===== WISHLIST ===== -->
+<section id="wishlist-section">
+  <div class="wishlist-inner">
+    <div class="wishlist-header">
+      <div>
+        <h2 class="section-title">✨ Lista de deseos general</h2>
+        <p class="section-sub">Ideas para el viaje en general</p>
+      </div>
+      <button class="btn-add" onclick="openModal()">+ Agregar idea</button>
     </div>
-    <div class="form-group">
-      <label>¿Para qué destino?</label>
+    <div class="wish-grid" id="wish-grid"><div class="wish-empty">Todavía no hay ideas 🌍</div></div>
+  </div>
+</section>
+
+<!-- MODAL wishlist -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <h3>Agregar idea general ✨</h3>
+    <p>Para el viaje en general, sin destino específico</p>
+    <div class="form-group"><label>Tu nombre</label><input type="text" id="input-quien" placeholder="Ej: Pilu, Mamá..." maxlength="40" /></div>
+    <div class="form-group"><label>¿Para qué destino?</label>
       <select id="input-ciudad">
-        <option value="">— Elegir destino —</option>
-        <option value="Madrid">Madrid 🇪🇸</option>
-        <option value="Toledo">Toledo 🇪🇸</option>
-        <option value="Valencia">Valencia 🇪🇸</option>
-        <option value="Granada">Granada 🇪🇸</option>
-        <option value="Nápoles">Nápoles 🇮🇹</option>
-        <option value="Positano">Positano 🇮🇹</option>
-        <option value="Salerno">Salerno 🇮🇹</option>
-        <option value="Roma">Roma 🇮🇹</option>
-        <option value="Florencia">Florencia 🇮🇹</option>
-        <option value="General">Para todo el viaje 🌍</option>
+        <option value="">— Elegir —</option>
+        <option value="Madrid">Madrid 🇪🇸</option><option value="Toledo">Toledo 🇪🇸</option>
+        <option value="Valencia">Valencia 🇪🇸</option><option value="Granada">Granada 🇪🇸</option>
+        <option value="Nápoles">Nápoles 🇮🇹</option><option value="Positano">Positano 🇮🇹</option>
+        <option value="Salerno">Salerno 🇮🇹</option><option value="Roma">Roma 🇮🇹</option>
+        <option value="Florencia">Florencia 🇮🇹</option><option value="General">Todo el viaje 🌍</option>
       </select>
     </div>
-    <div class="form-group">
-      <label>¿Qué querés hacer?</label>
-      <textarea id="input-actividad" placeholder="Ej: Comer pizza en un sitio local, visitar el mercado central, subir a la cúpula del Duomo..."></textarea>
-    </div>
+    <div class="form-group"><label>¿Qué querés hacer?</label><textarea id="input-actividad" placeholder="Ej: Comer pizza, subir al Duomo..."></textarea></div>
     <div class="modal-actions">
       <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
       <button class="btn-submit" id="btn-submit" onclick="submitWish()">¡Agregar! ✨</button>
@@ -1445,186 +748,217 @@
   </div>
 </div>
 
-<!-- ===== TOAST ===== -->
 <div class="toast" id="toast"></div>
 
-<!-- ===== FOOTER ===== -->
-<footer>
-  <p>Hecho con ❤️ para la <strong>Famiglia Barreto</strong> · España &amp; Italia · Mayo 2025</p>
-</footer>
+<footer><p>Hecho con ❤️ para la <strong>Famiglia Barreto</strong> · España &amp; Italia · Mayo 2026</p></footer>
 
-<!-- ===== JAVASCRIPT ===== -->
 <script type="module">
+// ============================================================
+// FIREBASE CONFIG
+// ============================================================
+const firebaseConfig = {
+  apiKey:            "AIzaSyC9oTFPLfwTXLKXf0tEYrdvlcU6vBvpYTk",
+  authDomain:        "viaje-famiglia.firebaseapp.com",
+  projectId:         "viaje-famiglia",
+  storageBucket:     "viaje-famiglia.firebasestorage.app",
+  messagingSenderId: "822493177240",
+  appId:             "1:822493177240:web:9f5a533422d13bfd34b7ed"
+};
 
-  // ============================================================
-  // CONFIGURACIÓN DE FIREBASE
-  // Reemplazá estos valores con los de tu proyecto en Firebase
-  // Instrucciones: mira el README o escríbenos
-  // ============================================================
-  const firebaseConfig = {
-    apiKey:            "AIzaSyC9oTFPLfwTXLKXf0tEYrdvlcU6vBvpYTk",
-    authDomain:        "viaje-famiglia.firebaseapp.com",
-    projectId:         "viaje-famiglia",
-    storageBucket:     "viaje-famiglia.firebasestorage.app",
-    messagingSenderId: "822493177240",
-    appId:             "1:822493177240:web:9f5a533422d13bfd34b7ed"
-  };
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, query, where, orderBy, serverTimestamp }
+  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
 
-  const FIREBASE_CONFIGURED = !firebaseConfig.apiKey.startsWith("TU_");
+// ============================================================
+// CAROUSEL
+// ============================================================
+const FOTOS_DESTINOS = {
+  madrid:   ['https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1200&q=80','https://images.unsplash.com/photo-1543785734756-4d8c6c0fe83c?w=1200&q=80','https://images.unsplash.com/photo-1580634216776-74c51ed6b35c?w=1200&q=80'],
+  toledo:   ['https://images.unsplash.com/photo-1562850408-8f4e4da6bc2f?w=1200&q=80','https://images.unsplash.com/photo-1576485375217-d6a95e34d043?w=1200&q=80','https://images.unsplash.com/photo-1542359620-2f1e4ba93ee0?w=1200&q=80'],
+  valencia: ['https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=1200&q=80','https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80','https://images.unsplash.com/photo-1529603100780-3b4a91a31dc9?w=1200&q=80'],
+  granada:  ['https://images.unsplash.com/photo-1585208798174-6cedd4b7a369?w=1200&q=80','https://images.unsplash.com/photo-1569585723035-2a0738f6b9e5?w=1200&q=80','https://images.unsplash.com/photo-1566041510639-8d95a2490bfb?w=1200&q=80'],
+  napoles:  ['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1200&q=80','https://images.unsplash.com/photo-1547399371-f9f37c0c1e84?w=1200&q=80','https://images.unsplash.com/photo-1563536014898-5fcbe7bf4b49?w=1200&q=80'],
+  positano: ['https://images.unsplash.com/photo-1534308143923-c3aa5eb35b65?w=1200&q=80','https://images.unsplash.com/photo-1548019994-3b4a2a89c30f?w=1200&q=80','https://images.unsplash.com/photo-1583394835042-59f2db71c66d?w=1200&q=80'],
+  salerno:  ['https://images.unsplash.com/photo-1559762705-2123aa9b467f?w=1200&q=80','https://images.unsplash.com/photo-1562572159-4efd90232580?w=1200&q=80','https://images.unsplash.com/photo-1523464862212-d6631d073194?w=1200&q=80'],
+  roma:     ['https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1200&q=80','https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=1200&q=80','https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=1200&q=80'],
+  florencia:['https://images.unsplash.com/photo-1541370976299-4d24ebbc9077?w=1200&q=80','https://images.unsplash.com/photo-1547895872-3a872a4e52e1?w=1200&q=80','https://images.unsplash.com/photo-1516108317508-6788f6a160e4?w=1200&q=80'],
+};
 
-  // ============================================================
-  // WISHLIST MANAGER — usa Firebase si está configurado,
-  // si no usa localStorage como fallback
-  // ============================================================
+const carouselState = {};
 
-  let wishItems = [];
+function initCarousels() {
+  document.querySelectorAll('.carousel').forEach(car => {
+    const dest = car.dataset.dest;
+    const fotos = FOTOS_DESTINOS[dest] || [];
+    const slidesEl = car.querySelector('.carousel-slides');
+    const dotsEl   = car.querySelector('.carousel-dots');
+    const overlay  = car.querySelector('.carousel-slide-overlay');
 
-  async function initWishlist() {
-    if (FIREBASE_CONFIGURED) {
-      document.getElementById('firebase-notice').style.display = 'none';
-      try {
-        const { initializeApp }   = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
-        const { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp }
-              = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+    fotos.forEach((url, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      slide.style.backgroundImage = `url('${url}')`;
+      slidesEl.appendChild(slide);
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i===0?' active':'');
+      dot.onclick = () => goToSlide(car, i);
+      dotsEl.appendChild(dot);
+    });
 
-        const app = initializeApp(firebaseConfig);
-        const db  = getFirestore(app);
-
-        const q = query(collection(db, 'deseos'), orderBy('timestamp', 'desc'));
-        onSnapshot(q, (snapshot) => {
-          wishItems = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-          renderWishlist();
-        });
-
-        window._addWishToFirebase = async (item) => {
-          await addDoc(collection(db, 'deseos'), {
-            ...item,
-            timestamp: serverTimestamp()
-          });
-        };
-      } catch (e) {
-        console.error('Firebase error:', e);
-        loadFromLocalStorage();
-      }
-    } else {
-      loadFromLocalStorage();
-    }
-  }
-
-  function loadFromLocalStorage() {
-    try {
-      wishItems = JSON.parse(localStorage.getItem('viaje-deseos') || '[]');
-    } catch { wishItems = []; }
-    renderWishlist();
-  }
-
-  function saveToLocalStorage() {
-    localStorage.setItem('viaje-deseos', JSON.stringify(wishItems));
-  }
-
-  function renderWishlist() {
-    const grid = document.getElementById('wish-grid');
-    if (wishItems.length === 0) {
-      grid.innerHTML = `<div class="wish-empty">
-        Todavía no hay ideas 🌍<br>
-        <small style="opacity:0.6; font-size:0.82rem;">¡Sé el primero en agregar algo!</small>
-      </div>`;
-      return;
-    }
-    grid.innerHTML = wishItems.map(item => `
-      <div class="wish-card">
-        <div class="wish-card-city">${item.ciudad}</div>
-        <div class="wish-card-text">${escapeHtml(item.actividad)}</div>
-        <div class="wish-card-author">— ${escapeHtml(item.quien)}</div>
-      </div>
-    `).join('');
-  }
-
-  function escapeHtml(text) {
-    return String(text)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
-  }
-
-  // ============================================================
-  // MODAL
-  // ============================================================
-
-  window.openModal = function() {
-    document.getElementById('modal').classList.add('open');
-    document.getElementById('input-quien').focus();
-  };
-
-  window.closeModal = function() {
-    document.getElementById('modal').classList.remove('open');
-  };
-
-  window.closeModalOutside = function(e) {
-    if (e.target === document.getElementById('modal')) closeModal();
-  };
-
-  window.submitWish = async function() {
-    const quien     = document.getElementById('input-quien').value.trim();
-    const ciudad    = document.getElementById('input-ciudad').value;
-    const actividad = document.getElementById('input-actividad').value.trim();
-
-    if (!quien)     { alert('¡Ponés tu nombre! 😊'); return; }
-    if (!ciudad)    { alert('¿Para qué destino es la idea?'); return; }
-    if (!actividad) { alert('¡Contanos la idea!'); return; }
-
-    const btn = document.getElementById('btn-submit');
-    btn.disabled = true;
-    btn.textContent = 'Guardando...';
-
-    const item = {
-      quien,
-      ciudad,
-      actividad,
-      timestamp: new Date().toISOString()
-    };
-
-    try {
-      if (FIREBASE_CONFIGURED && window._addWishToFirebase) {
-        await window._addWishToFirebase(item);
-      } else {
-        wishItems.unshift(item);
-        saveToLocalStorage();
-        renderWishlist();
-      }
-
-      closeModal();
-      document.getElementById('input-quien').value    = '';
-      document.getElementById('input-ciudad').value   = '';
-      document.getElementById('input-actividad').value= '';
-      showToast('¡Idea agregada! ✨');
-    } catch (e) {
-      console.error(e);
-      alert('Hubo un error al guardar. Intentá de nuevo.');
-    }
-
-    btn.disabled    = false;
-    btn.textContent = '¡Agregar! ✨';
-  };
-
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3000);
-  }
-
-  // ============================================================
-  // INIT
-  // ============================================================
-  initWishlist();
-
-  // Enter key en modal
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
+    // move overlay after slides
+    car.appendChild(overlay);
+    carouselState[dest] = { current:0, total:fotos.length, timer:null };
+    startAutoPlay(car, dest);
   });
-</script>
+}
 
+function goToSlide(car, idx) {
+  const dest = car.dataset.dest;
+  const state = carouselState[dest];
+  if (!state) return;
+  state.current = (idx + state.total) % state.total;
+  car.querySelector('.carousel-slides').style.transform = `translateX(-${state.current*100}%)`;
+  car.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i===state.current));
+}
+
+function startAutoPlay(car, dest) {
+  const state = carouselState[dest];
+  clearInterval(state.timer);
+  state.timer = setInterval(() => goToSlide(car, state.current+1), 5000);
+}
+
+window.carouselPrev = function(btn) {
+  const car = btn.closest('.carousel');
+  const dest = car.dataset.dest;
+  const state = carouselState[dest];
+  goToSlide(car, state.current-1);
+  startAutoPlay(car, dest);
+};
+window.carouselNext = function(btn) {
+  const car = btn.closest('.carousel');
+  const dest = car.dataset.dest;
+  const state = carouselState[dest];
+  goToSlide(car, state.current+1);
+  startAutoPlay(car, dest);
+};
+
+// ============================================================
+// PER-DESTINATION ACTIVITIES
+// ============================================================
+const DESTINOS = ['madrid','toledo','valencia','granada','napoles','positano','salerno','roma','florencia'];
+
+function initActividades() {
+  DESTINOS.forEach(dest => {
+    const q = query(collection(db,'actividades'), where('destino','==',dest), orderBy('timestamp','desc'));
+    onSnapshot(q, snap => {
+      const items = snap.docs.map(d => ({id:d.id,...d.data()}));
+      renderActList(dest, items);
+    }, err => {
+      // index may not exist yet — fallback without orderBy
+      const q2 = query(collection(db,'actividades'), where('destino','==',dest));
+      onSnapshot(q2, snap => {
+        const items = snap.docs.map(d => ({id:d.id,...d.data()})).sort((a,b)=> (b.timestamp?.seconds||0)-(a.timestamp?.seconds||0));
+        renderActList(dest, items);
+      });
+    });
+  });
+}
+
+function renderActList(dest, items) {
+  const el = document.getElementById(`act-list-${dest}`);
+  if (!el) return;
+  if (items.length === 0) { el.innerHTML = `<p class="act-empty">Todavía no hay ideas para ${dest.charAt(0).toUpperCase()+dest.slice(1)}.</p>`; return; }
+  el.innerHTML = items.map(item => `
+    <div class="act-card" id="act-${item.id}">
+      <div class="act-card-body">
+        <div class="act-card-text">${escapeHtml(item.texto)}</div>
+        <div class="act-card-author">— ${escapeHtml(item.quien)}</div>
+      </div>
+      <button class="act-delete" onclick="deleteAct('${item.id}')" title="Borrar">🗑️</button>
+    </div>`).join('');
+}
+
+window.toggleActForm = function(dest) {
+  const form = document.getElementById(`act-form-${dest}`);
+  form.classList.toggle('open');
+  if (form.classList.contains('open')) document.getElementById(`act-quien-${dest}`).focus();
+};
+
+window.saveAct = async function(dest) {
+  const quien = document.getElementById(`act-quien-${dest}`).value.trim();
+  const texto = document.getElementById(`act-texto-${dest}`).value.trim();
+  if (!quien) { alert('Ponés tu nombre 😊'); return; }
+  if (!texto) { alert('Escribí la idea'); return; }
+  await addDoc(collection(db,'actividades'), { destino:dest, quien, texto, timestamp:serverTimestamp() });
+  document.getElementById(`act-quien-${dest}`).value = '';
+  document.getElementById(`act-texto-${dest}`).value = '';
+  document.getElementById(`act-form-${dest}`).classList.remove('open');
+  showToast('¡Idea guardada! 💡');
+};
+
+window.deleteAct = async function(id) {
+  if (!confirm('¿Borrar esta idea?')) return;
+  await deleteDoc(doc(db,'actividades',id));
+  showToast('Idea borrada');
+};
+
+// (Fotos del viaje → Google Photos album)
+
+// ============================================================
+// WISHLIST GENERAL
+// ============================================================
+function initWishlist() {
+  const q = query(collection(db,'deseos'), orderBy('timestamp','desc'));
+  onSnapshot(q, snap => {
+    const items = snap.docs.map(d => ({id:d.id,...d.data()}));
+    const grid = document.getElementById('wish-grid');
+    if (items.length === 0) { grid.innerHTML = '<div class="wish-empty">Todavía no hay ideas 🌍<br><small style="opacity:.6;font-size:.82rem">¡Sé el primero en agregar!</small></div>'; return; }
+    grid.innerHTML = items.map(item => `<div class="wish-card"><div class="wish-card-city">${item.ciudad}</div><div class="wish-card-text">${escapeHtml(item.actividad)}</div><div class="wish-card-author">— ${escapeHtml(item.quien)}</div></div>`).join('');
+  }, () => {});
+}
+
+window.openModal  = () => { document.getElementById('modal').classList.add('open'); document.getElementById('input-quien').focus(); };
+window.closeModal = () => document.getElementById('modal').classList.remove('open');
+
+window.submitWish = async function() {
+  const quien     = document.getElementById('input-quien').value.trim();
+  const ciudad    = document.getElementById('input-ciudad').value;
+  const actividad = document.getElementById('input-actividad').value.trim();
+  if (!quien) { alert('Ponés tu nombre 😊'); return; }
+  if (!ciudad) { alert('¿Para qué destino?'); return; }
+  if (!actividad) { alert('¡Contanos la idea!'); return; }
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true; btn.textContent = 'Guardando...';
+  await addDoc(collection(db,'deseos'), { quien, ciudad, actividad, timestamp:serverTimestamp() });
+  closeModal();
+  document.getElementById('input-quien').value = '';
+  document.getElementById('input-ciudad').value = '';
+  document.getElementById('input-actividad').value = '';
+  showToast('¡Idea agregada! ✨');
+  btn.disabled = false; btn.textContent = '¡Agregar! ✨';
+};
+
+// ============================================================
+// UTILS
+// ============================================================
+function escapeHtml(t) { return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+// ============================================================
+// INIT
+// ============================================================
+initCarousels();
+initActividades();
+initWishlist();
+</script>
 </body>
 </html>
