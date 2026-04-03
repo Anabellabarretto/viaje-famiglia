@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Viaje Famiglia Barreto · España & Italia · Mayo 2025</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== VARIABLES ===== */
+    :root {
+      --navy: #1b3a5c;
+      --terra: #c4603a;
+      --gold: #d4a843;
+      --bg: #f5f0e8;
+      --card: #ffffff;
+      --text: #2c2c2c;
+      --text-light: #777;
+      --border: #e5ddd1;
+      --pending: #e6900a;
+      --shadow: 0 6px 30px rgba(0,0,0,0.09);
+      --radius: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      height: 100vh;
+      min-height: 600px;
+      background:
+        linear-gradient(to bottom, rgba(12,26,48,0.45) 0%, rgba(12,26,48,0.72) 100%),
+        url('https://images.unsplash.com/photo-1534308143923-c3aa5eb35b65?auto=format&fit=crop&w=1600&q=85') center / cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      padding: 24px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: #f0c77a;
+    }
+
+    .hero-dates {
+      font-size: 1.1rem;
+      font-weight: 300;
+      opacity: 0.9;
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+    }
+
+    .hero-flags {
+      font-size: 2rem;
+      letter-spacing: 8px;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.7;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll .arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid white;
+      border-bottom: 2px solid white;
+      transform: rotate(45deg);
+      animation: bounce 1.4s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50% { transform: rotate(45deg) translateY(5px); }
+    }
+
+    /* ===== STICKY NAV ===== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(27, 58, 92, 0.97);
+      backdrop-filter: blur(10px);
+      padding: 0 24px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav::-webkit-scrollbar { display: none; }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      max-width: 1100px;
+      margin: 0 auto;
+      white-space: nowrap;
+    }
+
+    .nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 16px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: color 0.2s, border-bottom 0.2s;
+      border-bottom: 3px solid transparent;
+    }
+
+    .nav a:hover {
+      color: #f0c77a;
+      border-bottom-color: #f0c77a;
+    }
+
+    /* ===== MAIN CONTAINER ===== */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    /* ===== SECTION TITLES ===== */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 48px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== DESTINATION CARDS ===== */
+    .destination {
+      margin-bottom: 64px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: var(--card);
+    }
+
+    .dest-image {
+      height: 280px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .dest-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,20,40,0.8) 0%, transparent 60%);
+      display: flex;
+      align-items: flex-end;
+      padding: 28px 32px;
+    }
+
+    .dest-header {
+      color: white;
+    }
+
+    .dest-dates-tag {
+      display: inline-block;
+      background: var(--terra);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+
+    .dest-city {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.1;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+
+    .dest-country {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      font-weight: 300;
+      margin-top: 2px;
+    }
+
+    .dest-body {
+      padding: 28px 32px;
+    }
+
+    /* ===== INFO BLOCKS ===== */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .info-grid { grid-template-columns: 1fr; }
+    }
+
+    .info-block {
+      background: #faf8f4;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+
+    .info-block.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .info-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .info-value {
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+
+    .info-value strong {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .info-value a {
+      color: var(--navy);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--gold);
+      transition: color 0.2s;
+    }
+
+    .info-value a:hover { color: var(--terra); }
+
+    /* ===== TRANSPORT DETAIL ===== */
+    .transport-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    .transport-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .transport-route {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .transport-time {
+      color: var(--terra);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .transport-detail {
+      color: var(--text-light);
+      font-size: 0.8rem;
+      margin-top: 2px;
+    }
+
+    /* ===== ACTIVITIES ===== */
+    .activities-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .activities-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .activities-list li .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    /* ===== BADGES ===== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .badge-pending {
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffd04a;
+    }
+
+    .badge-reserved {
+      background: #d1f0e0;
+      color: #1a6b3c;
+      border: 1px solid #7dcea0;
+    }
+
+    /* ===== DAY TRIP TAG ===== */
+    .daytrip-banner {
+      background: linear-gradient(90deg, #f0ebe0, #e8dfc8);
+      border-left: 4px solid var(--gold);
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: #5a4a1f;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    /* ===== DIVIDER ===== */
+    .section-divider {
+      text-align: center;
+      margin: 48px 0;
+      color: var(--text-light);
+      font-size: 1.5rem;
+      letter-spacing: 12px;
+      opacity: 0.4;
+    }
+
+    /* ===== WISHLIST SECTION ===== */
+    #wishlist-section {
+      background: var(--navy);
+      padding: 70px 20px;
+    }
+
+    .wishlist-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .wishlist-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .wishlist-header .section-title {
+      color: white;
+    }
+
+    .wishlist-header .section-sub {
+      color: rgba(255,255,255,0.55);
+    }
+
+    .btn-add {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--terra);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 13px 24px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      white-space: nowrap;
+    }
+
+    .btn-add:hover {
+      background: #a84e2e;
+      transform: translateY(-1px);
+    }
+
+    .btn-add:active { transform: translateY(0); }
+
+    /* ===== WISH CARDS GRID ===== */
+    .wish-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .wish-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 20px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .wish-card-city {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .wish-card-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .wish-card-author {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .wish-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.95rem;
+    }
+
+    .wish-loading {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,20,40,0.75);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: white;
+      border-radius: 20px;
+      padding: 36px;
+      width: 100%;
+      max-width: 460px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      animation: modalIn 0.25s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.94) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .modal p {
+      color: var(--text-light);
+      font-size: 0.88rem;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text);
+      background: #faf8f4;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--navy);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn-cancel {
+      flex: 1;
+      padding: 13px;
+      background: #f5f0e8;
+      border: 1.5px solid var(--border);
+      border-radius: 30px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-cancel:hover { background: #ede8de; }
+
+    .btn-submit {
+      flex: 2;
+      padding: 13px;
+      background: var(--navy);
+      border: none;
+      border-radius: 30px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-submit:hover { background: #142d47; }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1a6b3c;
+      color: white;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      z-index: 300;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0d1f33;
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.82rem;
+    }
+
+    footer strong { color: rgba(255,255,255,0.7); }
+
+    /* ===== FIREBASE CONFIG NOTICE ===== */
+    .firebase-notice {
+      background: #fff3cd;
+      border: 1.5px solid #ffd04a;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      font-size: 0.88rem;
+      color: #5a4a00;
+    }
+
+    .firebase-notice strong { color: #3d3200; }
+    .firebase-notice code {
+      background: rgba(0,0,0,0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .dest-image { height: 200px; }
+      .dest-body { padding: 20px 18px; }
+      .dest-city { font-size: 1.9rem; }
+      .dest-image-overlay { padding: 18px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-eyebrow">Un viaje para no olvidar</div>
+  <h1>Viaje <em>Famiglia</em><br>Barreto</h1>
+  <p class="hero-dates">España &amp; Italia &nbsp;·&nbsp; 9 al 24 de Mayo, 2025</p>
+  <div class="hero-flags">🇪🇸 🇮🇹</div>
+  <div class="hero-scroll">
+    <span>Ver itinerario</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- ===== STICKY NAV ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#madrid">🏙️ Madrid</a>
+    <a href="#toledo">🏰 Toledo</a>
+    <a href="#valencia">🌊 Valencia</a>
+    <a href="#granada">🏛️ Granada</a>
+    <a href="#napoles">🍕 Nápoles</a>
+    <a href="#positano">⛵ Positano</a>
+    <a href="#salerno">🌅 Salerno</a>
+    <a href="#roma">🏟️ Roma</a>
+    <a href="#florencia">🌸 Florencia</a>
+    <a href="#wishlist-section">✨ Lista de deseos</a>
+  </div>
+</nav>
+
+<!-- ===== ITINERARIO ===== -->
+<div class="container">
+
+  <div style="padding-top: 8px;">
+    <h2 class="section-title">El itinerario</h2>
+    <p class="section-sub">Todos los destinos, alojamientos y traslados del viaje</p>
+  </div>
+
+  <!-- ========== MADRID ========== -->
+  <div class="destination" id="madrid">
+    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1200&q=80');">
+      <div class="dest-image-overlay">
+        <div class="dest-header">
+          <div class="dest-dates-tag">9 · 10 Mayo</div>
+          <div class="dest-city">Madrid</div>
+          <div class="dest-country">🇪🇸 España</div>
+        </div>
+      </div>
+    </div>
+    <div class="dest-body">
+      <div class="info-grid">
+        <div class="info-block full-width">
+          <div class="info-label">🏨 Alojamiento</div>
+          <div class="info-value">
+            <strong>Hotel en Madrid</strong> · Noches: 9 y 10 de mayo (salida el 11 a las 10:00 hs)<br>
+            <a href="https://www.booking.com/hotel/es/madrid-madrid5.es.html" target="_blank">Ver reserva en Booking →</a>
+          </div>
+        </div>
+        <div class="info-block full-width">
+          <div class="info-label">📋 Actividades &amp; pendientes</div>
+          <ul class="activities-list">
+            <li><div class="dot"></div><span>Llegada de la familia <span class="badge badge-reserved">✓ Confirmado</span></span></li>
+            <li><div class="dot"></div><span>El Pilu llega el <strong>10 de mayo</strong></span></li>
+            <li><div class="dot"></div>
+              <span>Visita al <strong>Museo del Prado</strong> — ¿10 de mayo a la tarde o 11 a la mañana? <span class="badge badge-pending">Pendiente decidir + reservar</span></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- ========== TOLEDO ========== -->
+  <div class="destination" id="toledo">
+    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80');">
+      <div class="dest-image-overlay">
+        <div class="dest-header">
+          <div class="dest-dates-tag">11 Mayo</div>
+          <div class="dest-city">Toledo</div>
+          <div class="dest-country">🇪🇸 España · 1 hora desde Madrid en tren</div>
+        </div>
+      </div>
+    </div>
+    <div class="dest-body">
+      <div class="info-grid">
+        <div class="info-block">
+          <div class="info-label">🚆 Traslado desde Madrid</div>
+          <div class="info-value">
+            <div class="transport-row">
+              <span class="transport-icon">🚆</span>
+              <div>
+                <div class="transport-route">Madrid → Toledo</div>
+                <div class="transport-time">Aprox. 1 hora de viaje</div>
+                <div class="transport-detail">Pueden ir al mediodía, tarde o noche <span class="badge badge-pending">Por decidir</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">🏨 Alojamiento</div>
+          <div class="info-value">
+            <strong>Hotel Abad Toledo</strong> · 1 noche (11 mayo)<br>
+            <a href="https://www.booking.com/hotel/es/abadtoledo.es.html" target="_blank">Ver reserva en Booking →</a>
+          </div>
+        </div>
+        <div class="info-block full-width">
+          <div class="info-label">📋 Ideas para Toledo</div>
+          <ul class="activities-list">
+            <li><div class="dot"></div><span>Catedral de Toledo (Patrimonio UNESCO)</span></li>
+            <li><div class="dot"></div><span>Barrio judío y sinagoga del Tránsito</span></li>
+            <li><div class="dot"></div><span>Vistas desde el mirador del Valle</span></li>
+            <li><div class="dot"></div><span>Probar mazapán toledano 🍬</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- ========== VALENCIA ========== -->
+  <div class="destination" id="valencia">
+    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1599059813791-c6def6ce9c33?auto=format&fit=crop&w=1200&q=80');">
+      <div class="dest-image-overlay">
+        <div class="dest-header">
+          <div class="dest-dates-tag">12 – 16 Mayo</div>
+          <div class="dest-city">Valencia</div>
+          <div class="dest-country">🇪🇸 España · Base de operaciones</div>
+        </div>
+      </div>
+    </div>
+    <div class="dest-body">
+      <div class="info-grid">
+        <div class="info-block">
+          <div class="info-label">🚆 Traslado desde Toledo</div>
+          <div class="info-value">
+            <div class="transport-row">
+              <span class="transport-icon">🚆</span>
+              <div>
+                <div class="transport-route">Toledo → Valencia</div>
+                <div class="transport-time">Aprox. 3–4 hs en tren</div>
+                <div class="transport-detail">Salida desde la tarde del 12 <span class="badge badge-pending">Horario pendiente</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">🏨 Alojamiento</div>
+          <div class="info-value">
+            <strong>Apartamentos Navio</strong> · 12 al 15 de mayo<br>
+            <a href="https://www.booking.com/hotel/es/apartamentos-navio.es.html" target="_blank">Ver reserva en Booking →</a>
+          </div>
+        </div>
+        <div class="info-block full-width">
+          <div class="info-label">📋 Ideas para Valencia</div>
+          <ul class="activities-list">
+            <li><div class="dot"></div><span>Ciudad de las Artes y las Ciencias</span></li>
+            <li><div class="dot"></div><span>Playa de la Malvarrosa</span></li>
+            <li><div class="dot"></div><span>Mercado Central y paella original</span></li>
+            <li><div class="dot"></div><span>Barrio del Carmen y casco histórico</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- ========== GRANADA (DÍA DE EXCURSIÓN) ========== -->
+  <div class="destination" id="granada">
+    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1585208798174-6cedd4b7a369?auto=format&fit=crop&w=1200&q=80');">
+      <div class="dest-image-overlay">
+        <div class="dest-header">
+          <div class="dest-dates-tag">15 Mayo</div>
+          <div class="dest-city">Granada</div>
+          <div class="dest-country">🇪🇸 España · La Alhambra</div>
+        </div>
+      </div>
+    </div>
+    <div class="dest-body">
+      <div class="daytrip-banner">
+        🚗 Excursión desde Valencia — salida el 15 a la mañana, regreso el 16
+      </div>
+      <div class="info-grid">
+        <div class="info-block">
+          <div class="info-label">🚗 Traslado</div>
+          <div class="info-value">
+            <div class="transport-row">
+              <span class="transport-icon">🚗</span>
+              <div>
+                <div class="transport-route">Valencia → Granada</div>
+                <div class="transport-time">Aprox. 4 horas en auto</div>
+                <div class="transport-detail">Salida mañana del 15 (hora por confirmar)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">🏨 Alojamiento (1 noche)</div>
+          <div class="info-value">
+            Noche del 15 en Granada <span class="badge badge-pending">Pendiente reservar</span>
+          </div>
+        </div>
+        <div class="info-block full-width">
+          <div class="info-label">🏛️ Actividades</div>
+          <ul class="activities-list">
+            <li><div class="dot"></div><span><strong>La Alhambra</strong> — visita el 15 de mayo <span class="badge badge-pending">Pendiente reservar entrada</span></span></li>
+            <li><div class="dot"></div><span>Barrio del Albaicín (Patrimonio UNESCO)</span></li>
+            <li><div class="dot"></div><span>Mirador de San Nicolás al atardecer</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- VUELTA VALENCIA (nota) -->
+  <div style="background: var(--card); border-radius: 12px; padding: 20px 24px; border: 1px solid var(--border); margin-bottom: 64px; display: flex; gap: 14px; align-items: flex-start;">
+    <span style="font-size: 1.4rem;">🏠</span>
+    <div>
+      <div style="font-weight:700; color: var(--navy); margin-bottom: 4px;">16 mayo — Vuelta a Valencia</div>
+      <div style="font-size: 0.88rem; color: var(--text-light);">Regreso desde Granada. Noche en casa del Pilu o de Anabella.</div>
+    </div>
+  </div>
+
+  <!-- ========== NÁPOLES ========== -->
+  <div class="destination" id="napoles">
+    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80');">
+      <div class="dest-image-overlay">
+        <div class="dest-header">
+          <div class="dest-dates-tag">17 · 18 Mayo</div>
+          <div class="dest-city">Nápoles</div>
+          <div class="dest-country">🇮🇹 Italia · ¡Benvenuti!</div>
+        </div>
+      </div>
+    </div>
+    <div class="dest-body">
+      <div class="info-grid">
+        <div class="info-block full-width">
+          <div class="info-label">✈️ Vuelo Valencia → Nápoles</div>
+          <div class="info-value">
+            <div class="transport-row">
+              <span class="transport-icon">✈️</span>
+              <div>
+                <div class="transport-route">Valencia (VLC) → Nápoles (NAP)</div>
+                <div class="transport-time">Sale: 15:15 · Llega: 17:25 · 17 de mayo</div>
+                <div class="transport-detail"><span class="badge badge-reserved">✓ Reservado</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info-block full-width">
+          <div class="info-label">🏨 Alojamiento</div>
+          <div class="info-value">
+            <strong>NL House Nápoles</strong> · 17, 18 y 19 de mayo (salida 10:00 hs del 19)<br>
+            <a href="https://www.booking.com/hotel/it/nl-house.es.html" target="_blank">Ver reserva en Booking →</a>
+            &nbsp;<span class="badge badge-reserved">✓ Reservado</span>
+          </div>
+        </div>
+        <div class="info-block full-width">
+          <div class="info-label">📋 Ideas para Nápoles</div>
+          <ul class="activities-list">
+            <li><div class="dot"></div><span>Pizza napolitana en la pizzería histórica (¡obligatorio!)</span></li>
+            <li><div class="dot"></div><span>Museo Arqueológico Nacional</span></li>
+            <li><div class="dot"></div><span>Castel dell'Ovo y paseo por el Lungomare</span></li>
+            <li><div class="dot"></div><span>Excursión a Pompeya (45 min desde Nápoles)</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- ========== POSITANO ========== -->
+  <div class="destination" id="positano">
+    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1534308143923-c3aa5eb35b65?auto=format&fit=crop&w=1200&q=80');">
+      <div class="dest-image-overlay">
+        <div class="dest-header">
+          <div class="dest-dates-tag">19 Mayo · Día completo</div>
+          <div class="dest-city">Positano</div>
+          <div class="dest-country">🇮🇹 Italia · Costa Amalfitana</div>
+        </div>
+      </div>
+    </div>
+    <div class="dest-body">
+      <div class="daytrip-banner">
+        ⛵ Excursión en ferry desde Nápoles · Vuelta a Salerno
+      </div>
+      <div class="info-grid">
+        <div class="info-block">
+          <div class="info-label">⛵ Ferry de ida</div>
+          <div class="info-value">
+            <div class="transport-row">
+              <span class="transport-icon">⛵</span>
+              <div>
+                <div class="transport-route">Naples Beverello → Port of Positano</div>
+                <div class="transport-time">Sale: 10:45 · Llega: 12:00</div>
+                <div class="transport-detail">19 de mayo <span class="badge badge-reserved">✓ Reservado</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">⛵ Ferry de vuelta</div>
+          <div class="info-value">
+            <div class="transport-row">
+              <span class="transport-icon">⛵</span>
+              <div>
+                <div class="transport-route">Port of Positano → Salerno Molo Concordia</div>
+                <div class="transport-time">Sale: 18:45 · Llega: 19:20</div>
+                <div class="transport-detail">19 de mayo <span class="badge badge-reserved">✓ Reservado</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info-block full-width">
+          <div class="info-label">📋 Ideas para Positano</div>
+          <ul class="activities-list">
+            <li><div class="dot"></div><span>Playa Grande y playa Fornillo</span></li>
+            <li><div class="dot"></div><span>Helado mirando el mar (obligatorio 🍦)</span></li>
+            <li><div class="dot"></div><span>Subir por los callejones floridos del pueblo</span></li>
+            <li><div class="dot"></div><span>Almuerzo con vista al mar</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- ========== SALERNO ========== -->
+  <div class="destination" id="salerno">
+    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1590523741831-ab710947c2cd?auto=format&fit=crop&w=1200&q=80');">
+      <div class="dest-image-overlay">
+        <div class="dest-header">
+          <div class="dest-dates-tag">19 · 20 Mayo</div>
+          <div class="dest-city">Salerno</div>
+          <div class="dest-country">🇮🇹 Italia · Costa Amalfitana</div>
+        </div>
+      </div>
+    </div>
+    <div class="dest-body">
+      <div class="info-grid">
+        <div class="info-block full-width">
+          <div class="info-label">🏨 Alojamiento</div>
+          <div class="info-value">
+            <strong>Lubea Apartment Salerno</strong> · Noches: 19 y 20 de mayo (salida 10:00 hs del 20)<br>
+            <a href="https://www.booking.com/hotel/it/lubea-apartment.es.html" target="_blank">Ver reserva en Booking →</a>
+            &nbsp;<span class="badge badge-reserved">✓ Reservado</span>
+          </div>
+        </div>
+        <div class="info-block full-width">
+          <div class="info-label">📋 Ideas para Salerno</div>
+          <ul class="activities-list">
+            <li><div class="dot"></div><span>Paseo por el Lungomare Trieste</span></li>
+            <li><div class="dot"></div><span>Catedral de San Matteo</span></li>
+            <li><div class="dot"></div><span>Cena en el centro histórico</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- ========== ROMA ========== -->
+  <div class="destination" id="roma">
+    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1200&q=80');">
+      <div class="dest-image-overlay">
+        <div class="dest-header">
+          <div class="dest-dates-tag">20 – 22 Mayo</div>
+          <div class="dest-city">Roma</div>
+          <div class="dest-country">🇮🇹 Italia · La Ciudad Eterna</div>
+        </div>
+      </div>
+    </div>
+    <div class="dest-body">
+      <div class="info-grid">
+        <div class="info-block full-width">
+          <div class="info-label">🚆 Tren Salerno → Roma (Italo)</div>
+          <div class="info-value">
+            <div class="transport-row">
+              <span class="transport-icon">🚄</span>
+              <div>
+                <div class="transport-route">Salerno → Roma Termini</div>
+                <div class="transport-time">Sale: 16:25 · Llega: 18:30 · 20 de mayo</div>
+                <div class="transport-detail">
+                  Tren Italo N° 9954 · Vagón 3 · Asientos 7, 8, 9 · Prima Business &nbsp;
+                  <span class="badge badge-reserved">✓ Reservado · Código: JHSLVA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info-block full-width">
+          <div class="info-label">🏨 Alojamiento</div>
+          <div class="info-value">
+            <strong>Colosseum Home Roma</strong> · 20, 21 y 22 de mayo (salida 10:00 hs del 22)<br>
+            <a href="https://www.booking.com/hotel/it/colosseum-home-roma1.es.html" target="_blank">Ver reserva en Booking →</a>
+            &nbsp;<span class="badge badge-reserved">✓ Reservado</span>
+          </div>
+        </div>
+        <div class="info-block full-width">
+          <div class="info-label">📋 Actividades en Roma</div>
+          <ul class="activities-list">
+            <li><div class="dot"></div><span><strong>Ópera Romana</strong> <span class="badge badge-pending">Pendiente reservar fecha</span></span></li>
+            <li><div class="dot"></div><span>Coliseo y Foro Romano</span></li>
+            <li><div class="dot"></div><span>Ciudad del Vaticano y Capilla Sixtina</span></li>
+            <li><div class="dot"></div><span>Fontana di Trevi (tirar la moneda 🪙)</span></li>
+            <li><div class="dot"></div><span>Piazza Navona y Campo de' Fiori</span></li>
+            <li><div class="dot"></div><span>Aperitivo en Trastevere</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- ========== FLORENCIA ========== -->
+  <div class="destination" id="florencia">
+    <div class="dest-image" style="background-image: url('https://images.unsplash.com/photo-1541370976299-4d24ebbc9077?auto=format&fit=crop&w=1200&q=80');">
+      <div class="dest-image-overlay">
+        <div class="dest-header">
+          <div class="dest-dates-tag">22 – 24 Mayo</div>
+          <div class="dest-city">Florencia</div>
+          <div class="dest-country">🇮🇹 Italia · Rinascimento</div>
+        </div>
+      </div>
+    </div>
+    <div class="dest-body">
+      <div class="info-grid">
+        <div class="info-block">
+          <div class="info-label">🚆 Tren Roma → Florencia</div>
+          <div class="info-value">
+            <div class="transport-row">
+              <span class="transport-icon">🚄</span>
+              <div>
+                <div class="transport-route">Roma → Florencia</div>
+                <div class="transport-time">22 de mayo</div>
+                <div class="transport-detail"><span class="badge badge-pending">Horario pendiente · Por reservar</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">🏨 Alojamiento</div>
+          <div class="info-value">
+            Florencia · 22 y 23 de mayo<br>
+            <span class="badge badge-pending">Pendiente reservar</span>
+          </div>
+        </div>
+        <div class="info-block full-width">
+          <div class="info-label">📋 Ideas para Florencia</div>
+          <ul class="activities-list">
+            <li><div class="dot"></div><span>Galería Uffizi (David de Botticelli)</span></li>
+            <li><div class="dot"></div><span>Duomo · Santa Maria del Fiore</span></li>
+            <li><div class="dot"></div><span>Ponte Vecchio al atardecer</span></li>
+            <li><div class="dot"></div><span>Piazzale Michelangelo (vistas increíbles)</span></li>
+            <li><div class="dot"></div><span>Gelato en Gelateria dei Neri 🍦</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTIDAS -->
+  <div class="section-divider">· · ·</div>
+
+  <div style="background: var(--card); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 12px;">
+    <div style="background: var(--navy); padding: 20px 28px;">
+      <div style="font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 6px;">24 Mayo · Fin del viaje</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: white; font-weight: 700;">Las despedidas ✈️</div>
+    </div>
+    <div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 16px;">
+      <div class="info-block">
+        <div class="info-label">🚆 Tren Florencia → Roma (mañana del 24)</div>
+        <div class="info-value">
+          <span class="badge badge-pending">Horario pendiente · Por reservar</span>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">✈️ Vuelo MA · Roma → Madrid</div>
+        <div class="info-value">
+          <strong>Tarde del 24 de mayo</strong><br>
+          <span class="badge badge-pending">Confirmar horario</span>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">✈️ Vuelo Anabella · Roma → Valencia</div>
+        <div class="info-value">
+          <strong>Tarde del 24 de mayo</strong>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">✈️ Vuelo MA · Madrid → Asunción</div>
+        <div class="info-value">
+          <strong>Mismo aeropuerto · Sale 23:45 del 24 · Llega 06:25 del 25</strong>
+          <span class="badge badge-reserved" style="margin-left: 8px;">✓ Reservado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end .container -->
+
+<!-- ===== WISHLIST SECTION ===== -->
+<section id="wishlist-section">
+  <div class="wishlist-inner">
+    <div class="wishlist-header">
+      <div>
+        <h2 class="section-title">✨ Lista de deseos</h2>
+        <p class="section-sub">¿Qué quieren hacer? Agreguen sus ideas para el viaje</p>
+      </div>
+      <button class="btn-add" onclick="openModal()">
+        <span>+</span> Agregar idea
+      </button>
+    </div>
+
+    <!-- Firebase notice (se oculta automáticamente cuando Firebase está configurado) -->
+    <div class="firebase-notice" id="firebase-notice">
+      ⚙️ <strong>Configuración pendiente:</strong> Para que las ideas se guarden para todos,
+      hay que conectar Firebase. <a href="https://github.com/Anabellabarretto/viaje-famiglia#configurar-firebase" target="_blank" style="color: #3d3200;">Ver instrucciones →</a>
+      <br><small style="opacity:0.7;">Por ahora las ideas se guardan solo en tu dispositivo.</small>
+    </div>
+
+    <div class="wish-grid" id="wish-grid">
+      <div class="wish-loading">Cargando ideas... 🌍</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <h3>Agregar una idea ✨</h3>
+    <p>Contanos qué querés hacer o conocer durante el viaje</p>
+    <div class="form-group">
+      <label>Tu nombre</label>
+      <input type="text" id="input-quien" placeholder="Ej: Pilu, Mamá, Anabella..." maxlength="40" />
+    </div>
+    <div class="form-group">
+      <label>¿Para qué destino?</label>
+      <select id="input-ciudad">
+        <option value="">— Elegir destino —</option>
+        <option value="Madrid">Madrid 🇪🇸</option>
+        <option value="Toledo">Toledo 🇪🇸</option>
+        <option value="Valencia">Valencia 🇪🇸</option>
+        <option value="Granada">Granada 🇪🇸</option>
+        <option value="Nápoles">Nápoles 🇮🇹</option>
+        <option value="Positano">Positano 🇮🇹</option>
+        <option value="Salerno">Salerno 🇮🇹</option>
+        <option value="Roma">Roma 🇮🇹</option>
+        <option value="Florencia">Florencia 🇮🇹</option>
+        <option value="General">Para todo el viaje 🌍</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>¿Qué querés hacer?</label>
+      <textarea id="input-actividad" placeholder="Ej: Comer pizza en un sitio local, visitar el mercado central, subir a la cúpula del Duomo..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="btn-submit" id="btn-submit" onclick="submitWish()">¡Agregar! ✨</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"></div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>Hecho con ❤️ para la <strong>Famiglia Barreto</strong> · España &amp; Italia · Mayo 2025</p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script type="module">
+
+  // ============================================================
+  // CONFIGURACIÓN DE FIREBASE
+  // Reemplazá estos valores con los de tu proyecto en Firebase
+  // Instrucciones: mira el README o escríbenos
+  // ============================================================
+  const firebaseConfig = {
+    apiKey:            "TU_API_KEY",
+    authDomain:        "TU_PROYECTO.firebaseapp.com",
+    projectId:         "TU_PROYECTO_ID",
+    storageBucket:     "TU_PROYECTO.appspot.com",
+    messagingSenderId: "TU_SENDER_ID",
+    appId:             "TU_APP_ID"
+  };
+
+  const FIREBASE_CONFIGURED = !firebaseConfig.apiKey.startsWith("TU_");
+
+  // ============================================================
+  // WISHLIST MANAGER — usa Firebase si está configurado,
+  // si no usa localStorage como fallback
+  // ============================================================
+
+  let wishItems = [];
+
+  async function initWishlist() {
+    if (FIREBASE_CONFIGURED) {
+      document.getElementById('firebase-notice').style.display = 'none';
+      try {
+        const { initializeApp }   = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
+        const { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp }
+              = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+
+        const app = initializeApp(firebaseConfig);
+        const db  = getFirestore(app);
+
+        const q = query(collection(db, 'deseos'), orderBy('timestamp', 'desc'));
+        onSnapshot(q, (snapshot) => {
+          wishItems = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+          renderWishlist();
+        });
+
+        window._addWishToFirebase = async (item) => {
+          await addDoc(collection(db, 'deseos'), {
+            ...item,
+            timestamp: serverTimestamp()
+          });
+        };
+      } catch (e) {
+        console.error('Firebase error:', e);
+        loadFromLocalStorage();
+      }
+    } else {
+      loadFromLocalStorage();
+    }
+  }
+
+  function loadFromLocalStorage() {
+    try {
+      wishItems = JSON.parse(localStorage.getItem('viaje-deseos') || '[]');
+    } catch { wishItems = []; }
+    renderWishlist();
+  }
+
+  function saveToLocalStorage() {
+    localStorage.setItem('viaje-deseos', JSON.stringify(wishItems));
+  }
+
+  function renderWishlist() {
+    const grid = document.getElementById('wish-grid');
+    if (wishItems.length === 0) {
+      grid.innerHTML = `<div class="wish-empty">
+        Todavía no hay ideas 🌍<br>
+        <small style="opacity:0.6; font-size:0.82rem;">¡Sé el primero en agregar algo!</small>
+      </div>`;
+      return;
+    }
+    grid.innerHTML = wishItems.map(item => `
+      <div class="wish-card">
+        <div class="wish-card-city">${item.ciudad}</div>
+        <div class="wish-card-text">${escapeHtml(item.actividad)}</div>
+        <div class="wish-card-author">— ${escapeHtml(item.quien)}</div>
+      </div>
+    `).join('');
+  }
+
+  function escapeHtml(text) {
+    return String(text)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  // ============================================================
+  // MODAL
+  // ============================================================
+
+  window.openModal = function() {
+    document.getElementById('modal').classList.add('open');
+    document.getElementById('input-quien').focus();
+  };
+
+  window.closeModal = function() {
+    document.getElementById('modal').classList.remove('open');
+  };
+
+  window.closeModalOutside = function(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  };
+
+  window.submitWish = async function() {
+    const quien     = document.getElementById('input-quien').value.trim();
+    const ciudad    = document.getElementById('input-ciudad').value;
+    const actividad = document.getElementById('input-actividad').value.trim();
+
+    if (!quien)     { alert('¡Ponés tu nombre! 😊'); return; }
+    if (!ciudad)    { alert('¿Para qué destino es la idea?'); return; }
+    if (!actividad) { alert('¡Contanos la idea!'); return; }
+
+    const btn = document.getElementById('btn-submit');
+    btn.disabled = true;
+    btn.textContent = 'Guardando...';
+
+    const item = {
+      quien,
+      ciudad,
+      actividad,
+      timestamp: new Date().toISOString()
+    };
+
+    try {
+      if (FIREBASE_CONFIGURED && window._addWishToFirebase) {
+        await window._addWishToFirebase(item);
+      } else {
+        wishItems.unshift(item);
+        saveToLocalStorage();
+        renderWishlist();
+      }
+
+      closeModal();
+      document.getElementById('input-quien').value    = '';
+      document.getElementById('input-ciudad').value   = '';
+      document.getElementById('input-actividad').value= '';
+      showToast('¡Idea agregada! ✨');
+    } catch (e) {
+      console.error(e);
+      alert('Hubo un error al guardar. Intentá de nuevo.');
+    }
+
+    btn.disabled    = false;
+    btn.textContent = '¡Agregar! ✨';
+  };
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  // ============================================================
+  // INIT
+  // ============================================================
+  initWishlist();
+
+  // Enter key en modal
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+
+</body>
+</html>
