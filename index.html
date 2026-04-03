@@ -790,19 +790,7 @@ const DESTINO_LABEL = {
   florencia: 'Florencia'
 };
 
-const DESTINO_WIKI = {
-  madrid: ['Madrid', 'Plaza_Mayor,_Madrid', 'Royal_Palace_of_Madrid'],
-  toledo: ['Toledo,_Spain', 'Toledo_Cathedral', 'Alc%C3%A1zar_of_Toledo'],
-  valencia: ['City_of_Arts_and_Sciences', 'Llotja_de_la_Seda', 'Pla%C3%A7a_de_la_Verge'],
-  granada: ['Granada', 'Alhambra', 'Albaic%C3%ADn'],
-  napoles: ['Naples', 'Castel_dell%27Ovo', 'Piazza_del_Plebiscito'],
-  positano: ['Positano', 'Amalfi_Coast', 'Church_of_Santa_Maria_Assunta_(Positano)'],
-  salerno: ['Salerno', 'Salerno_Cathedral', 'Arechi_Castle'],
-  roma: ['Rome', 'Colosseum', 'Trevi_Fountain'],
-  florencia: ['Florence', 'Florence_Cathedral', 'Ponte_Vecchio']
-};
-
-const FALLBACK_FOTOS = {
+const FOTOS_DESTINOS = {
   madrid: ['https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1200&q=80','https://images.unsplash.com/photo-1543785734756-4d8c6c0fe83c?w=1200&q=80','https://images.unsplash.com/photo-1580634216776-74c51ed6b35c?w=1200&q=80'],
   toledo: ['https://images.unsplash.com/photo-1562850408-8f4e4da6bc2f?w=1200&q=80','https://images.unsplash.com/photo-1576485375217-d6a95e34d043?w=1200&q=80','https://images.unsplash.com/photo-1542359620-2f1e4ba93ee0?w=1200&q=80'],
   valencia: ['https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1200&q=80','https://images.unsplash.com/photo-1509840841025-9088ba78a826?w=1200&q=80','https://images.unsplash.com/photo-1511108690759-009324a90311?w=1200&q=80'],
@@ -816,37 +804,10 @@ const FALLBACK_FOTOS = {
 
 const carouselState = {};
 
-async function fetchWikiImage(title) {
-  try {
-    const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${title}`);
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data.originalimage?.source || data.thumbnail?.source || null;
-  } catch {
-    return null;
-  }
-}
-
-async function resolvePhotos(dest) {
-  const titles = DESTINO_WIKI[dest] || [];
-  const photos = [];
-
-  for (const title of titles) {
-    const image = await fetchWikiImage(title);
-    if (image && !photos.includes(image)) photos.push(image);
-  }
-
-  if (photos.length === 0) return FALLBACK_FOTOS[dest] || [];
-  while (photos.length < 3) photos.push(photos[0]);
-  return photos.slice(0, 3);
-}
-
-async function initCarousels() {
-  const carousels = Array.from(document.querySelectorAll('.carousel'));
-
-  for (const car of carousels) {
+function initCarousels() {
+  document.querySelectorAll('.carousel').forEach(car => {
     const dest = car.dataset.dest;
-    const fotos = await resolvePhotos(dest);
+    const fotos = FOTOS_DESTINOS[dest] || [];
     const slidesEl = car.querySelector('.carousel-slides');
     const dotsEl = car.querySelector('.carousel-dots');
     const overlay = car.querySelector('.carousel-slide-overlay');
@@ -869,7 +830,7 @@ async function initCarousels() {
     car.appendChild(overlay);
     carouselState[dest] = { current: 0, total: fotos.length, timer: null };
     startAutoPlay(car, dest);
-  }
+  });
 }
 
 function goToSlide(car, idx) {
