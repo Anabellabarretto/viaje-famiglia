@@ -18,7 +18,7 @@
     body { font-family:'Lato',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
 
     /* HERO */
-    .hero { height:100vh; min-height:600px; background: linear-gradient(to bottom,rgba(12,26,48,.45),rgba(12,26,48,.72)), url('https://images.unsplash.com/photo-1534308143923-c3aa5eb35b65?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:#fff; position:relative; padding:24px; }
+    .hero { height:100vh; min-height:600px; background: linear-gradient(to bottom,rgba(12,26,48,.45),rgba(12,26,48,.72)), url('https://loremflickr.com/1600/900/positano,italy?lock=91') center/cover no-repeat; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:#fff; position:relative; padding:24px; }
     .hero-eyebrow { font-weight:300; font-size:.85rem; letter-spacing:4px; text-transform:uppercase; opacity:.85; margin-bottom:18px; }
     .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.4rem,6vw,5rem); font-weight:700; line-height:1.15; margin-bottom:20px; text-shadow:0 2px 20px rgba(0,0,0,.3); }
     .hero h1 em { font-style:italic; color:#f0c77a; }
@@ -127,7 +127,7 @@
     #fotos-section { background:white; padding:70px 20px; border-top:1px solid var(--border); }
     .fotos-inner { max-width:900px; margin:0 auto; }
     .gphoto-card { display:flex; flex-direction:column; align-items:center; gap:0; border-radius:20px; overflow:hidden; box-shadow:var(--shadow); background:var(--card); }
-    .gphoto-preview { width:100%; height:320px; background: linear-gradient(135deg,rgba(27,58,92,.85),rgba(196,96,58,.7)), url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1200&q=80') center/cover no-repeat; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:white; padding:40px; position:relative; }
+    .gphoto-preview { width:100%; height:320px; background: linear-gradient(135deg,rgba(27,58,92,.85),rgba(196,96,58,.7)), url('https://loremflickr.com/1200/800/rome,italy?lock=41') center/cover no-repeat; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:white; padding:40px; position:relative; }
     .gphoto-icon { font-size:4rem; margin-bottom:16px; filter:drop-shadow(0 4px 12px rgba(0,0,0,.3)); }
     .gphoto-title { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; margin-bottom:8px; text-shadow:0 2px 10px rgba(0,0,0,.4); }
     .gphoto-sub { font-size:.9rem; opacity:.85; font-weight:300; margin-bottom:28px; }
@@ -774,44 +774,92 @@ const db  = getFirestore(app);
 // ============================================================
 // CAROUSEL
 // ============================================================
+const DESTINO_LABEL = {
+  madrid: 'Madrid',
+  toledo: 'Toledo',
+  valencia: 'Valencia',
+  granada: 'Granada',
+  napoles: 'Nápoles',
+  positano: 'Positano',
+  salerno: 'Salerno',
+  roma: 'Roma',
+  florencia: 'Florencia'
+};
+
+function cityPhotoUrls(city, country, seedBase) {
+  return [1, 2, 3, 4, 5].map(i => `https://loremflickr.com/1600/900/${encodeURIComponent(city)},${encodeURIComponent(country)}?lock=${seedBase + i}`);
+}
+
+function placeholderForCity(city) {
+  return `https://placehold.co/1600x900/f5f0e8/1b3a5c?text=${encodeURIComponent(city)}`;
+}
+
 const FOTOS_DESTINOS = {
-  madrid:   ['https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1200&q=80','https://images.unsplash.com/photo-1543785734756-4d8c6c0fe83c?w=1200&q=80','https://images.unsplash.com/photo-1580634216776-74c51ed6b35c?w=1200&q=80'],
-  toledo:   ['https://images.unsplash.com/photo-1562850408-8f4e4da6bc2f?w=1200&q=80','https://images.unsplash.com/photo-1576485375217-d6a95e34d043?w=1200&q=80','https://images.unsplash.com/photo-1542359620-2f1e4ba93ee0?w=1200&q=80'],
-  valencia: ['https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=1200&q=80','https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80','https://images.unsplash.com/photo-1529603100780-3b4a91a31dc9?w=1200&q=80'],
-  granada:  ['https://images.unsplash.com/photo-1585208798174-6cedd4b7a369?w=1200&q=80','https://images.unsplash.com/photo-1569585723035-2a0738f6b9e5?w=1200&q=80','https://images.unsplash.com/photo-1566041510639-8d95a2490bfb?w=1200&q=80'],
-  napoles:  ['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1200&q=80','https://images.unsplash.com/photo-1547399371-f9f37c0c1e84?w=1200&q=80','https://images.unsplash.com/photo-1563536014898-5fcbe7bf4b49?w=1200&q=80'],
-  positano: ['https://images.unsplash.com/photo-1534308143923-c3aa5eb35b65?w=1200&q=80','https://images.unsplash.com/photo-1548019994-3b4a2a89c30f?w=1200&q=80','https://images.unsplash.com/photo-1583394835042-59f2db71c66d?w=1200&q=80'],
-  salerno:  ['https://images.unsplash.com/photo-1559762705-2123aa9b467f?w=1200&q=80','https://images.unsplash.com/photo-1562572159-4efd90232580?w=1200&q=80','https://images.unsplash.com/photo-1523464862212-d6631d073194?w=1200&q=80'],
-  roma:     ['https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1200&q=80','https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=1200&q=80','https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=1200&q=80'],
-  florencia:['https://images.unsplash.com/photo-1541370976299-4d24ebbc9077?w=1200&q=80','https://images.unsplash.com/photo-1547895872-3a872a4e52e1?w=1200&q=80','https://images.unsplash.com/photo-1516108317508-6788f6a160e4?w=1200&q=80'],
+  madrid: cityPhotoUrls('madrid', 'spain', 10),
+  toledo: cityPhotoUrls('toledo', 'spain', 20),
+  valencia: cityPhotoUrls('valencia', 'spain', 30),
+  granada: cityPhotoUrls('granada', 'spain', 40),
+  napoles: cityPhotoUrls('naples', 'italy', 50),
+  positano: cityPhotoUrls('positano', 'italy', 60),
+  salerno: cityPhotoUrls('salerno', 'italy', 70),
+  roma: cityPhotoUrls('rome', 'italy', 80),
+  florencia: cityPhotoUrls('florence', 'italy', 90),
 };
 
 const carouselState = {};
 
-function initCarousels() {
-  document.querySelectorAll('.carousel').forEach(car => {
+function loadImage(url) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.referrerPolicy = 'no-referrer';
+    img.src = url;
+  });
+}
+
+async function resolvePhotos(dest) {
+  const urls = FOTOS_DESTINOS[dest] || [];
+  const valid = [];
+  for (const url of urls) {
+    const ok = await loadImage(url);
+    if (ok) valid.push(url);
+    if (valid.length === 3) break;
+  }
+  while (valid.length < 3) {
+    valid.push(placeholderForCity(DESTINO_LABEL[dest] || dest));
+  }
+  return valid;
+}
+
+async function initCarousels() {
+  const carousels = Array.from(document.querySelectorAll('.carousel'));
+  for (const car of carousels) {
     const dest = car.dataset.dest;
-    const fotos = FOTOS_DESTINOS[dest] || [];
+    const fotos = await resolvePhotos(dest);
     const slidesEl = car.querySelector('.carousel-slides');
     const dotsEl   = car.querySelector('.carousel-dots');
     const overlay  = car.querySelector('.carousel-slide-overlay');
 
+    slidesEl.innerHTML = '';
+    dotsEl.innerHTML = '';
+
     fotos.forEach((url, i) => {
       const slide = document.createElement('div');
       slide.className = 'carousel-slide';
-      slide.style.backgroundImage = `url('${url}')`;
+      slide.style.backgroundImage = `url("${url}")`;
       slidesEl.appendChild(slide);
+
       const dot = document.createElement('div');
-      dot.className = 'carousel-dot' + (i===0?' active':'');
+      dot.className = 'carousel-dot' + (i===0 ? ' active' : '');
       dot.onclick = () => goToSlide(car, i);
       dotsEl.appendChild(dot);
     });
 
-    // move overlay after slides
     car.appendChild(overlay);
     carouselState[dest] = { current:0, total:fotos.length, timer:null };
     startAutoPlay(car, dest);
-  });
+  }
 }
 
 function goToSlide(car, idx) {
@@ -825,7 +873,9 @@ function goToSlide(car, idx) {
 
 function startAutoPlay(car, dest) {
   const state = carouselState[dest];
+  if (!state) return;
   clearInterval(state.timer);
+  if (state.total <= 1) return;
   state.timer = setInterval(() => goToSlide(car, state.current+1), 5000);
 }
 
@@ -869,7 +919,7 @@ function initActividades() {
 function renderActList(dest, items) {
   const el = document.getElementById(`act-list-${dest}`);
   if (!el) return;
-  if (items.length === 0) { el.innerHTML = `<p class="act-empty">Todavía no hay ideas para ${dest.charAt(0).toUpperCase()+dest.slice(1)}.</p>`; return; }
+  if (items.length === 0) { el.innerHTML = `<p class="act-empty">Todavía no hay ideas para ${DESTINO_LABEL[dest] || dest}.</p>`; return; }
   el.innerHTML = items.map(item => `
     <div class="act-card" id="act-${item.id}">
       <div class="act-card-body">
