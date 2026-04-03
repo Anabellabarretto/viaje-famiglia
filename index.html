@@ -754,44 +754,8 @@
 
 <footer><p>Hecho con ❤️ para la <strong>Famiglia Oliva</strong> · España &amp; Italia · Mayo 2026</p></footer>
 
-<script type="module">
-// ============================================================
-// FIREBASE CONFIG
-// ============================================================
-const firebaseConfig = {
-  apiKey:            "AIzaSyC9oTFPLfwTXLKXf0tEYrdvlcU6vBvpYTk",
-  authDomain:        "viaje-famiglia.firebaseapp.com",
-  projectId:         "viaje-famiglia",
-  storageBucket:     "viaje-famiglia.firebasestorage.app",
-  messagingSenderId: "822493177240",
-  appId:             "1:822493177240:web:9f5a533422d13bfd34b7ed"
-};
-
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, query, where, orderBy, serverTimestamp }
-  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-const app = initializeApp(firebaseConfig);
-const db  = getFirestore(app);
-const auth = getAuth(app);
-
-await signInAnonymously(auth);
-
-// ============================================================
-// CAROUSEL
-// ============================================================
-const DESTINO_LABEL = {
-  madrid: 'Madrid',
-  toledo: 'Toledo',
-  valencia: 'Valencia',
-  granada: 'Granada',
-  napoles: 'Nápoles',
-  positano: 'Positano',
-  salerno: 'Salerno',
-  roma: 'Roma',
-  florencia: 'Florencia'
-};
-
+<!-- ===== CAROUSEL: script normal, independiente de Firebase ===== -->
+<script>
 const FOTOS_DESTINOS = {
   madrid:   ['img/madrid/1.jpg',   'img/madrid/2.avif',   'img/madrid/3.avif'],
   toledo:   ['img/toledo/1.jpg',   'img/toledo/2.avif',   'img/toledo/3.avif'],
@@ -804,186 +768,157 @@ const FOTOS_DESTINOS = {
   florencia:['img/florencia/1.jpg','img/florencia/2.jpg', 'img/florencia/3.webp'],
 };
 
-const carouselState = {};
+const _cState = {};
 
 function initCarousels() {
   document.querySelectorAll('.carousel').forEach(car => {
-    const dest = car.dataset.dest;
-    const fotos = FOTOS_DESTINOS[dest] || [];
+    const dest    = car.dataset.dest;
+    const fotos   = FOTOS_DESTINOS[dest] || [];
     const slidesEl = car.querySelector('.carousel-slides');
-    const dotsEl = car.querySelector('.carousel-dots');
-    const overlay = car.querySelector('.carousel-slide-overlay');
+    const dotsEl   = car.querySelector('.carousel-dots');
+    const overlay  = car.querySelector('.carousel-slide-overlay');
 
     slidesEl.innerHTML = '';
-    dotsEl.innerHTML = '';
+    dotsEl.innerHTML   = '';
 
     fotos.forEach((url, i) => {
       const slide = document.createElement('div');
       slide.className = 'carousel-slide';
-      slide.style.backgroundImage = `url('${url}')`;
+      slide.style.cssText = `background-image:url('${url}');background-size:cover;background-position:center;`;
       slidesEl.appendChild(slide);
 
       const dot = document.createElement('div');
       dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      dot.onclick = () => goToSlide(car, i);
+      dot.onclick = () => { _goTo(car, i); _auto(car, dest); };
       dotsEl.appendChild(dot);
     });
 
     car.appendChild(overlay);
-    carouselState[dest] = { current: 0, total: fotos.length, timer: null };
-    startAutoPlay(car, dest);
+    _cState[dest] = { cur: 0, tot: fotos.length, timer: null };
+    _auto(car, dest);
   });
 }
 
-function goToSlide(car, idx) {
-  const dest = car.dataset.dest;
-  const state = carouselState[dest];
-  if (!state || state.total === 0) return;
-  state.current = (idx + state.total) % state.total;
-  car.querySelector('.carousel-slides').style.transform = `translateX(-${state.current * 100}%)`;
-  car.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === state.current));
+function _goTo(car, idx) {
+  const dest  = car.dataset.dest;
+  const state = _cState[dest];
+  if (!state || state.tot === 0) return;
+  state.cur = ((idx % state.tot) + state.tot) % state.tot;
+  car.querySelector('.carousel-slides').style.transform = `translateX(-${state.cur * 100}%)`;
+  car.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === state.cur));
 }
 
-function startAutoPlay(car, dest) {
-  const state = carouselState[dest];
-  if (!state) return;
+function _auto(car, dest) {
+  const state = _cState[dest];
+  if (!state || state.tot <= 1) return;
   clearInterval(state.timer);
-  if (state.total <= 1) return;
-  state.timer = setInterval(() => goToSlide(car, state.current + 1), 5000);
+  state.timer = setInterval(() => _goTo(car, state.cur + 1), 5000);
 }
 
-window.carouselPrev = function(btn) {
-  const car = btn.closest('.carousel');
-  const dest = car.dataset.dest;
-  const state = carouselState[dest];
-  if (!state) return;
-  goToSlide(car, state.current - 1);
-  startAutoPlay(car, dest);
+window.carouselPrev = btn => { const c = btn.closest('.carousel'); _goTo(c, _cState[c.dataset.dest].cur - 1); _auto(c, c.dataset.dest); };
+window.carouselNext = btn => { const c = btn.closest('.carousel'); _goTo(c, _cState[c.dataset.dest].cur + 1); _auto(c, c.dataset.dest); };
+
+document.addEventListener('DOMContentLoaded', initCarousels);
+</script>
+
+<!-- ===== FIREBASE: módulo independiente ===== -->
+<script type="module">
+const firebaseConfig = {
+  apiKey:            "AIzaSyC9oTFPLfwTXLKXf0tEYrdvlcU6vBvpYTk",
+  authDomain:        "viaje-famiglia.firebaseapp.com",
+  projectId:         "viaje-famiglia",
+  storageBucket:     "viaje-famiglia.firebasestorage.app",
+  messagingSenderId: "822493177240",
+  appId:             "1:822493177240:web:9f5a533422d13bfd34b7ed"
 };
 
-window.carouselNext = function(btn) {
-  const car = btn.closest('.carousel');
-  const dest = car.dataset.dest;
-  const state = carouselState[dest];
-  if (!state) return;
-  goToSlide(car, state.current + 1);
-  startAutoPlay(car, dest);
-};
+try {
+  const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
+  const { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, query, where, orderBy, serverTimestamp }
+    = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
 
-// ============================================================
-// PER-DESTINATION ACTIVITIES
-// ============================================================
-const DESTINOS = ['madrid','toledo','valencia','granada','napoles','positano','salerno','roma','florencia'];
+  const app = initializeApp(firebaseConfig);
+  const db  = getFirestore(app);
 
-function initActividades() {
+  const esc = t => String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const toast = msg => { const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000); };
+
+  // ---- ACTIVIDADES POR DESTINO ----
+  const DESTINOS = ['madrid','toledo','valencia','granada','napoles','positano','salerno','roma','florencia'];
+
   DESTINOS.forEach(dest => {
     const q = query(collection(db,'actividades'), where('destino','==',dest), orderBy('timestamp','desc'));
-    onSnapshot(q, snap => {
-      const items = snap.docs.map(d => ({id:d.id,...d.data()}));
-      renderActList(dest, items);
-    }, err => {
-      // index may not exist yet — fallback without orderBy
-      const q2 = query(collection(db,'actividades'), where('destino','==',dest));
-      onSnapshot(q2, snap => {
-        const items = snap.docs.map(d => ({id:d.id,...d.data()})).sort((a,b)=> (b.timestamp?.seconds||0)-(a.timestamp?.seconds||0));
-        renderActList(dest, items);
-      });
-    });
+    const render = items => {
+      const el = document.getElementById(`act-list-${dest}`);
+      if (!el) return;
+      el.innerHTML = items.length === 0
+        ? `<p class="act-empty">Todavía no hay ideas aquí.</p>`
+        : items.map(it => `<div class="act-card">
+            <div class="act-card-body">
+              <div class="act-card-text">${esc(it.texto)}</div>
+              <div class="act-card-author">— ${esc(it.quien)}</div>
+            </div>
+            <button class="act-delete" onclick="window._delAct('${it.id}')">🗑️</button>
+          </div>`).join('');
+    };
+    onSnapshot(q, snap => render(snap.docs.map(d=>({id:d.id,...d.data()}))),
+      () => onSnapshot(query(collection(db,'actividades'),where('destino','==',dest)),
+        snap => render(snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.timestamp?.seconds||0)-(a.timestamp?.seconds||0)))));
   });
-}
 
-function renderActList(dest, items) {
-  const el = document.getElementById(`act-list-${dest}`);
-  if (!el) return;
-  if (items.length === 0) { el.innerHTML = `<p class="act-empty">Todavía no hay ideas para ${DESTINO_LABEL[dest] || dest}.</p>`; return; }
-  el.innerHTML = items.map(item => `
-    <div class="act-card" id="act-${item.id}">
-      <div class="act-card-body">
-        <div class="act-card-text">${escapeHtml(item.texto)}</div>
-        <div class="act-card-author">— ${escapeHtml(item.quien)}</div>
-      </div>
-    </div>`).join('');
-}
+  window.toggleActForm = dest => {
+    const f = document.getElementById(`act-form-${dest}`);
+    f.classList.toggle('open');
+    if (f.classList.contains('open')) document.getElementById(`act-quien-${dest}`).focus();
+  };
+  window.saveAct = async dest => {
+    const quien = document.getElementById(`act-quien-${dest}`).value.trim();
+    const texto = document.getElementById(`act-texto-${dest}`).value.trim();
+    if (!quien) { alert('Ponés tu nombre 😊'); return; }
+    if (!texto) { alert('Escribí la idea'); return; }
+    await addDoc(collection(db,'actividades'), { destino:dest, quien, texto, timestamp:serverTimestamp() });
+    document.getElementById(`act-quien-${dest}`).value = '';
+    document.getElementById(`act-texto-${dest}`).value = '';
+    document.getElementById(`act-form-${dest}`).classList.remove('open');
+    toast('¡Idea guardada! 💡');
+  };
+  window._delAct = async id => {
+    if (!confirm('¿Borrar esta idea?')) return;
+    await deleteDoc(doc(db,'actividades',id));
+    toast('Idea borrada');
+  };
 
-window.toggleActForm = function(dest) {
-  const form = document.getElementById(`act-form-${dest}`);
-  form.classList.toggle('open');
-  if (form.classList.contains('open')) document.getElementById(`act-quien-${dest}`).focus();
-};
-
-window.saveAct = async function(dest) {
-  const quien = document.getElementById(`act-quien-${dest}`).value.trim();
-  const texto = document.getElementById(`act-texto-${dest}`).value.trim();
-  if (!quien) { alert('Ponés tu nombre 😊'); return; }
-  if (!texto) { alert('Escribí la idea'); return; }
-  await addDoc(collection(db,'actividades'), { destino:dest, quien, texto, timestamp:serverTimestamp() });
-  document.getElementById(`act-quien-${dest}`).value = '';
-  document.getElementById(`act-texto-${dest}`).value = '';
-  document.getElementById(`act-form-${dest}`).classList.remove('open');
-  showToast('¡Idea guardada! 💡');
-};
-
-window.deleteAct = async function(id) {
-  if (!confirm('¿Borrar esta idea?')) return;
-  await deleteDoc(doc(db,'actividades',id));
-  showToast('Idea borrada');
-};
-
-// (Fotos del viaje → Google Photos album)
-
-// ============================================================
-// WISHLIST GENERAL
-// ============================================================
-function initWishlist() {
-  const q = query(collection(db,'deseos'), orderBy('timestamp','desc'));
-  onSnapshot(q, snap => {
-    const items = snap.docs.map(d => ({id:d.id,...d.data()}));
+  // ---- WISHLIST GENERAL ----
+  onSnapshot(query(collection(db,'deseos'),orderBy('timestamp','desc')), snap => {
+    const items = snap.docs.map(d=>({id:d.id,...d.data()}));
     const grid = document.getElementById('wish-grid');
-    if (items.length === 0) { grid.innerHTML = '<div class="wish-empty">Todavía no hay ideas 🌍<br><small style="opacity:.6;font-size:.82rem">¡Sé el primero en agregar!</small></div>'; return; }
-    grid.innerHTML = items.map(item => `<div class="wish-card"><div class="wish-card-city">${item.ciudad}</div><div class="wish-card-text">${escapeHtml(item.actividad)}</div><div class="wish-card-author">— ${escapeHtml(item.quien)}</div></div>`).join('');
-  }, () => {});
+    grid.innerHTML = items.length === 0
+      ? '<div class="wish-empty">Todavía no hay ideas 🌍</div>'
+      : items.map(it=>`<div class="wish-card"><div class="wish-card-city">${esc(it.ciudad)}</div><div class="wish-card-text">${esc(it.actividad)}</div><div class="wish-card-author">— ${esc(it.quien)}</div></div>`).join('');
+  }, ()=>{});
+
+  window.openModal  = () => { document.getElementById('modal').classList.add('open'); document.getElementById('input-quien').focus(); };
+  window.closeModal = () => document.getElementById('modal').classList.remove('open');
+  window.submitWish = async () => {
+    const quien=document.getElementById('input-quien').value.trim();
+    const ciudad=document.getElementById('input-ciudad').value;
+    const actividad=document.getElementById('input-actividad').value.trim();
+    if(!quien){alert('Ponés tu nombre 😊');return;}
+    if(!ciudad){alert('¿Para qué destino?');return;}
+    if(!actividad){alert('¡Contanos la idea!');return;}
+    const btn=document.getElementById('btn-submit');
+    btn.disabled=true; btn.textContent='Guardando...';
+    await addDoc(collection(db,'deseos'),{quien,ciudad,actividad,timestamp:serverTimestamp()});
+    window.closeModal();
+    ['input-quien','input-ciudad','input-actividad'].forEach(id=>document.getElementById(id).value='');
+    toast('¡Idea agregada! ✨');
+    btn.disabled=false; btn.textContent='¡Agregar! ✨';
+  };
+  document.addEventListener('keydown', e => { if(e.key==='Escape') window.closeModal?.(); });
+
+} catch(e) {
+  console.warn('Firebase no disponible:', e);
 }
-
-window.openModal  = () => { document.getElementById('modal').classList.add('open'); document.getElementById('input-quien').focus(); };
-window.closeModal = () => document.getElementById('modal').classList.remove('open');
-
-window.submitWish = async function() {
-  const quien     = document.getElementById('input-quien').value.trim();
-  const ciudad    = document.getElementById('input-ciudad').value;
-  const actividad = document.getElementById('input-actividad').value.trim();
-  if (!quien) { alert('Ponés tu nombre 😊'); return; }
-  if (!ciudad) { alert('¿Para qué destino?'); return; }
-  if (!actividad) { alert('¡Contanos la idea!'); return; }
-  const btn = document.getElementById('btn-submit');
-  btn.disabled = true; btn.textContent = 'Guardando...';
-  await addDoc(collection(db,'deseos'), { quien, ciudad, actividad, timestamp:serverTimestamp() });
-  closeModal();
-  document.getElementById('input-quien').value = '';
-  document.getElementById('input-ciudad').value = '';
-  document.getElementById('input-actividad').value = '';
-  showToast('¡Idea agregada! ✨');
-  btn.disabled = false; btn.textContent = '¡Agregar! ✨';
-};
-
-// ============================================================
-// UTILS
-// ============================================================
-function escapeHtml(t) { return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
-}
-
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
-
-// ============================================================
-// INIT
-// ============================================================
-initCarousels();
-initActividades();
-initWishlist();
 </script>
 </body>
 </html>
