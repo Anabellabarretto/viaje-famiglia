@@ -766,10 +766,14 @@ const firebaseConfig = {
 };
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, query, where, orderBy, serverTimestamp }
   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
+const auth = getAuth(app);
+
+await signInAnonymously(auth);
 
 // ============================================================
 // CAROUSEL
@@ -935,7 +939,6 @@ function renderActList(dest, items) {
         <div class="act-card-text">${escapeHtml(item.texto)}</div>
         <div class="act-card-author">— ${escapeHtml(item.quien)}</div>
       </div>
-      <button class="act-delete" onclick="deleteAct('${item.id}')" title="Borrar">🗑️</button>
     </div>`).join('');
 }
 
