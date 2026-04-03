@@ -379,6 +379,67 @@
       border: 1px solid #7dcea0;
     }
 
+    /* ===== PLAN DE LLEGADA ===== */
+    .plan-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 6px;
+    }
+
+    .plan-step {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .plan-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 17px;
+      top: 36px;
+      bottom: -8px;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .plan-step-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      margin-bottom: 16px;
+    }
+
+    .plan-step-content {
+      padding-top: 6px;
+      padding-bottom: 10px;
+    }
+
+    .plan-step-time {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--terra);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .plan-step-text {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .plan-step-text strong { color: var(--navy); }
+
     /* ===== DAY TRIP TAG ===== */
     .daytrip-banner {
       background: linear-gradient(90deg, #f0ebe0, #e8dfc8);
@@ -751,9 +812,34 @@
           </div>
         </div>
         <div class="info-block full-width">
+          <div class="info-label">✈️ Llegada de Mamá (Viviana)</div>
+          <div class="plan-steps">
+            <div class="plan-step">
+              <div class="plan-step-icon">✈️</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">Sáb. 9 mayo · 12:50 hs · Asunción</div>
+                <div class="plan-step-text">Sale de <strong>Aeropuerto Silvio Pettirossi (ASU)</strong><br>Vuelo Air Europa <strong>UX24</strong> · Ref: 8HEBIX</div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">🛬</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">Dom. 10 mayo · 04:55 hs · Madrid</div>
+                <div class="plan-step-text">Llega al <strong>Aeropuerto Adolfo Suárez Madrid-Barajas (MAD)</strong><br>Duración del vuelo: 11 hs 05 min</div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">🤗</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">04:55 hs — Llegada</div>
+                <div class="plan-step-text"><strong>Anabella la espera en el aeropuerto</strong> y van juntas al hotel a descansar 🏨</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info-block full-width">
           <div class="info-label">📋 Actividades &amp; pendientes</div>
           <ul class="activities-list">
-            <li><div class="dot"></div><span>Llegada de la familia <span class="badge badge-reserved">✓ Confirmado</span></span></li>
             <li><div class="dot"></div><span>El Pilu llega el <strong>10 de mayo</strong></span></li>
             <li><div class="dot"></div>
               <span>Visita al <strong>Museo del Prado</strong> — ¿10 de mayo a la tarde o 11 a la mañana? <span class="badge badge-pending">Pendiente decidir + reservar</span></span>
@@ -779,15 +865,28 @@
     </div>
     <div class="dest-body">
       <div class="info-grid">
-        <div class="info-block">
-          <div class="info-label">🚆 Traslado desde Madrid</div>
-          <div class="info-value">
-            <div class="transport-row">
-              <span class="transport-icon">🚆</span>
-              <div>
-                <div class="transport-route">Madrid → Toledo</div>
-                <div class="transport-time">Aprox. 1 hora de viaje</div>
-                <div class="transport-detail">Pueden ir al mediodía, tarde o noche <span class="badge badge-pending">Por decidir</span></div>
+        <div class="info-block full-width">
+          <div class="info-label">🚆 Plan de traslado · Madrid → Toledo</div>
+          <div class="plan-steps">
+            <div class="plan-step">
+              <div class="plan-step-icon">🏨</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">Mañana del 11 · Madrid</div>
+                <div class="plan-step-text">Check-out del hotel · Guardamos las valijas o las llevamos</div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">🚆</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">Mediodía o tarde del 11 <span class="badge badge-pending">Horario por elegir</span></div>
+                <div class="plan-step-text">Tren <strong>Madrid → Toledo</strong> desde Estación de Atocha · <strong>~33 minutos</strong></div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">🏰</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">Llegada a Toledo</div>
+                <div class="plan-step-text">Check-in en <strong>Hotel Abad Toledo</strong> · Tarde/noche para explorar la ciudad medieval</div>
               </div>
             </div>
           </div>
@@ -827,15 +926,28 @@
     </div>
     <div class="dest-body">
       <div class="info-grid">
-        <div class="info-block">
-          <div class="info-label">🚆 Traslado desde Toledo</div>
-          <div class="info-value">
-            <div class="transport-row">
-              <span class="transport-icon">🚆</span>
-              <div>
-                <div class="transport-route">Toledo → Valencia</div>
-                <div class="transport-time">Aprox. 3–4 hs en tren</div>
-                <div class="transport-detail">Salida desde la tarde del 12 <span class="badge badge-pending">Horario pendiente</span></div>
+        <div class="info-block full-width">
+          <div class="info-label">🚆 Plan de traslado · Toledo → Valencia</div>
+          <div class="plan-steps">
+            <div class="plan-step">
+              <div class="plan-step-icon">🏰</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">Mañana del 12 · Toledo</div>
+                <div class="plan-step-text">Última mañana en Toledo · Check-out del hotel</div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">🚆</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">Tarde del 12 <span class="badge badge-pending">Horario pendiente</span></div>
+                <div class="plan-step-text">Tren <strong>Toledo → Valencia</strong> · Aprox. <strong>3–4 horas</strong> de viaje (con trasbordo en Madrid o directo)</div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">🌊</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">Llegada a Valencia</div>
+                <div class="plan-step-text">Check-in en <strong>Apartamentos Navio</strong> · ¡Base de operaciones por 4 días!</div>
               </div>
             </div>
           </div>
@@ -934,14 +1046,34 @@
     <div class="dest-body">
       <div class="info-grid">
         <div class="info-block full-width">
-          <div class="info-label">✈️ Vuelo Valencia → Nápoles</div>
-          <div class="info-value">
-            <div class="transport-row">
-              <span class="transport-icon">✈️</span>
-              <div>
-                <div class="transport-route">Valencia (VLC) → Nápoles (NAP)</div>
-                <div class="transport-time">Sale: 15:15 · Llega: 17:25 · 17 de mayo</div>
-                <div class="transport-detail"><span class="badge badge-reserved">✓ Reservado</span></div>
+          <div class="info-label">✈️ Plan de llegada · Valencia → Nápoles</div>
+          <div class="plan-steps">
+            <div class="plan-step">
+              <div class="plan-step-icon">🏠</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">Mañana del 17 · Valencia</div>
+                <div class="plan-step-text">Última mañana en casa · Preparamos las valijas · Salida al aeropuerto</div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">✈️</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">17 mayo · 15:15 hs · Valencia (VLC)</div>
+                <div class="plan-step-text">Vuelo <strong>Valencia → Nápoles</strong> <span class="badge badge-reserved">✓ Reservado</span></div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">🛬</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">17 mayo · 17:25 hs · Nápoles (NAP)</div>
+                <div class="plan-step-text">Llegamos al <strong>Aeropuerto de Nápoles-Capodichino</strong> · Metro o taxi al apartamento (~30 min)</div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">🍕</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">Noche del 17</div>
+                <div class="plan-step-text">Check-in en <strong>NL House Nápoles</strong> · Primera cena napolitana 🇮🇹</div>
               </div>
             </div>
           </div>
@@ -1040,6 +1172,32 @@
     <div class="dest-body">
       <div class="info-grid">
         <div class="info-block full-width">
+          <div class="info-label">⛵ Plan de llegada · Positano → Salerno</div>
+          <div class="plan-steps">
+            <div class="plan-step">
+              <div class="plan-step-icon">⛵</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">19 mayo · 18:45 hs · Port of Positano</div>
+                <div class="plan-step-text">Ferry <strong>Positano → Salerno Molo Concordia</strong> <span class="badge badge-reserved">✓ Reservado</span></div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">🌅</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">19 mayo · 19:20 hs · Salerno</div>
+                <div class="plan-step-text">Llegada al puerto de Salerno · Caminata o taxi al apartamento</div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">🏠</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">Noche del 19</div>
+                <div class="plan-step-text">Check-in en <strong>Lubea Apartment Salerno</strong> · Cena en el centro histórico</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info-block full-width">
           <div class="info-label">🏨 Alojamiento</div>
           <div class="info-value">
             <strong>Lubea Apartment Salerno</strong> · Noches: 19 y 20 de mayo (salida 10:00 hs del 20)<br>
@@ -1075,17 +1233,27 @@
     <div class="dest-body">
       <div class="info-grid">
         <div class="info-block full-width">
-          <div class="info-label">🚆 Tren Salerno → Roma (Italo)</div>
-          <div class="info-value">
-            <div class="transport-row">
-              <span class="transport-icon">🚄</span>
-              <div>
-                <div class="transport-route">Salerno → Roma Termini</div>
-                <div class="transport-time">Sale: 16:25 · Llega: 18:30 · 20 de mayo</div>
-                <div class="transport-detail">
-                  Tren Italo N° 9954 · Vagón 3 · Asientos 7, 8, 9 · Prima Business &nbsp;
-                  <span class="badge badge-reserved">✓ Reservado · Código: JHSLVA</span>
-                </div>
+          <div class="info-label">🚄 Plan de traslado · Salerno → Roma</div>
+          <div class="plan-steps">
+            <div class="plan-step">
+              <div class="plan-step-icon">🌅</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">Mañana del 20 · Salerno</div>
+                <div class="plan-step-text">Última mañana en Salerno · Check-out a las <strong>10:00 hs</strong> · Exploramos o descansamos hasta el tren</div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">🚄</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">20 mayo · 16:25 hs · Salerno</div>
+                <div class="plan-step-text">Tren <strong>Italo N° 9954</strong> · Vagón 3 · Asientos 7, 8 y 9 · <em>Prima Business</em><br>Código: <strong>JHSLVA</strong> <span class="badge badge-reserved">✓ Reservado</span></div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">🏟️</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">20 mayo · 18:30 hs · Roma Termini</div>
+                <div class="plan-step-text">Llegada a <strong>Roma Termini</strong> · Metro o taxi al apartamento · <em>Benvenute a Roma!</em> 🎉</div>
               </div>
             </div>
           </div>
@@ -1128,15 +1296,28 @@
     </div>
     <div class="dest-body">
       <div class="info-grid">
-        <div class="info-block">
-          <div class="info-label">🚆 Tren Roma → Florencia</div>
-          <div class="info-value">
-            <div class="transport-row">
-              <span class="transport-icon">🚄</span>
-              <div>
-                <div class="transport-route">Roma → Florencia</div>
-                <div class="transport-time">22 de mayo</div>
-                <div class="transport-detail"><span class="badge badge-pending">Horario pendiente · Por reservar</span></div>
+        <div class="info-block full-width">
+          <div class="info-label">🚄 Plan de traslado · Roma → Florencia</div>
+          <div class="plan-steps">
+            <div class="plan-step">
+              <div class="plan-step-icon">🏟️</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">Mañana del 22 · Roma</div>
+                <div class="plan-step-text">Check-out del apartamento a las <strong>10:00 hs</strong></div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">🚄</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">22 mayo <span class="badge badge-pending">Horario pendiente · Por reservar</span></div>
+                <div class="plan-step-text">Tren <strong>Roma → Florencia Santa Maria Novella</strong> · Aprox. <strong>1h 30 min</strong></div>
+              </div>
+            </div>
+            <div class="plan-step">
+              <div class="plan-step-icon">🌸</div>
+              <div class="plan-step-content">
+                <div class="plan-step-time">Llegada a Florencia</div>
+                <div class="plan-step-text">Check-in en el alojamiento <span class="badge badge-pending">Pendiente reservar</span> · ¡Última ciudad del viaje!</div>
               </div>
             </div>
           </div>
@@ -1281,13 +1462,13 @@
   // Instrucciones: mira el README o escríbenos
   // ============================================================
   const firebaseConfig = {
-  apiKey: "AIzaSyC9oTFPLfwTXLKXf0tEYrdvlcU6vBvpYTk",
-  authDomain: "viaje-famiglia.firebaseapp.com",
-  projectId: "viaje-famiglia",
-  storageBucket: "viaje-famiglia.firebasestorage.app",
-  messagingSenderId: "822493177240",
-  appId: "1:822493177240:web:9f5a533422d13bfd34b7ed"
-};
+    apiKey:            "AIzaSyC9oTFPLfwTXLKXf0tEYrdvlcU6vBvpYTk",
+    authDomain:        "viaje-famiglia.firebaseapp.com",
+    projectId:         "viaje-famiglia",
+    storageBucket:     "viaje-famiglia.firebasestorage.app",
+    messagingSenderId: "822493177240",
+    appId:             "1:822493177240:web:9f5a533422d13bfd34b7ed"
+  };
 
   const FIREBASE_CONFIGURED = !firebaseConfig.apiKey.startsWith("TU_");
 
