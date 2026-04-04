@@ -1074,16 +1074,17 @@ try {
 
       // Escuchar respuestas por cada idea
       items.forEach(it => {
-        const qr = query(collection(db,'respuestas'), where('idIdea','==',it.id), orderBy('timestamp','asc'));
+        const qr = query(collection(db,'respuestas'), where('idIdea','==',it.id));
         _replyUnsubs[it.id] = onSnapshot(qr, snap => {
           const el2 = document.getElementById(`rlist-${it.id}`);
           if (!el2) return;
-          const rs = snap.docs.map(d=>({id:d.id,...d.data()}));
+          const rs = snap.docs.map(d=>({id:d.id,...d.data()}))
+            .sort((a,b)=>(a.timestamp?.seconds||0)-(b.timestamp?.seconds||0));
           el2.innerHTML = rs.map(r=>`<div class="reply-card">
             <span class="reply-card-text">${linkify(r.texto)}</span>
             <span class="reply-card-author">— ${esc(r.quien)}</span>
           </div>`).join('');
-        }, ()=>{});
+        }, e => console.warn('replies error:',e));
       });
     };
     onSnapshot(q, snap => render(snap.docs.map(d=>({id:d.id,...d.data()}))),
