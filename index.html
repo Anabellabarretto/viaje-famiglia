@@ -667,13 +667,42 @@
     </div>
     <div style="padding:24px 28px;display:flex;flex-direction:column;gap:16px;">
       <div class="info-block"><div class="info-label">🚄 Tren Florencia → Roma (mañana del 24)</div><div class="info-value"><span class="badge badge-pending">Horario pendiente · Por reservar</span></div></div>
-      <div class="info-block"><div class="info-label">✈️ Vuelo MA · Roma → Madrid · tarde del 24</div><div class="info-value"><span class="badge badge-pending">Confirmar horario</span></div></div>
-      <div class="info-block"><div class="info-label">✈️ Vuelo MA · Madrid → Asunción</div><div class="info-value"><strong>Sale 23:45 del 24 · Llega 06:25 del 25</strong> <span class="badge badge-reserved">✓ Reservado</span></div></div>
+      <div class="info-block full-width">
+        <div class="info-label">✈️ Vuelo Mamá · Roma → Madrid</div>
+        <div class="plan-steps">
+          <div class="plan-step"><div class="plan-step-icon">✈️</div><div class="plan-step-content"><div class="plan-step-time">Dom. 24 mayo · 17:10 hs · Roma (FCO) <span class="badge badge-reserved">✓ Reservado</span></div><div class="plan-step-text">Vuelo <strong>Wizz Air W46013</strong> · Roma Fiumicino → Madrid Barajas · Ref: <strong>GMZNQJ</strong> · Directo · 2h 40min</div></div></div>
+          <div class="plan-step"><div class="plan-step-icon">🛬</div><div class="plan-step-content"><div class="plan-step-time">Dom. 24 mayo · 19:50 hs · Madrid (MAD)</div><div class="plan-step-text">Llega al <strong>Aeropuerto Adolfo Suárez Madrid-Barajas</strong> · <em>3h 45min para la conexión</em> ✅</div></div></div>
+          <div class="plan-step"><div class="plan-step-icon">✈️</div><div class="plan-step-content"><div class="plan-step-time">Dom. 24 mayo · 23:35 hs · Madrid → Asunción <span class="badge badge-reserved">✓ Reservado</span></div><div class="plan-step-text">Sale de <strong>Adolfo Suárez Madrid-Barajas</strong> · Llega Asunción <strong>06:25 del 25</strong></div></div></div>
+        </div>
+      </div>
       <div class="info-block"><div class="info-label">✈️ Vuelo Anabella · Roma → Valencia · tarde del 24</div><div class="info-value">Regreso a casa 🏠</div></div>
     </div>
   </div>
 
 </div><!-- end container -->
+
+<!-- ===== CALENDARIO ===== -->
+<section id="calendario-section" style="background:#f0ece4;padding:56px 20px;">
+  <div style="max-width:900px;margin:0 auto;">
+    <h2 class="section-title" style="text-align:center;">🗓️ Calendario del viaje</h2>
+    <p class="section-sub" style="text-align:center;margin-bottom:32px;">Tocá un día para ver dónde estaremos</p>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;align-items:flex-start;">
+      <!-- Grilla del calendario -->
+      <div style="background:white;border-radius:18px;padding:24px;box-shadow:0 4px 24px rgba(0,0,0,0.08);flex:1;min-width:280px;max-width:420px;">
+        <div style="text-align:center;font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:#2c3e50;margin-bottom:18px;">Mayo 2026</div>
+        <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;"></div>
+        <div id="cal-legend" style="margin-top:18px;display:flex;flex-wrap:wrap;gap:6px;"></div>
+      </div>
+      <!-- Panel de info -->
+      <div id="cal-panel" style="background:white;border-radius:18px;padding:28px 24px;box-shadow:0 4px 24px rgba(0,0,0,0.08);flex:1;min-width:220px;max-width:380px;display:flex;align-items:center;justify-content:center;min-height:220px;">
+        <div id="cal-panel-content" style="text-align:center;">
+          <div style="font-size:2.8rem;margin-bottom:10px;">🗺️</div>
+          <div style="font-size:.9rem;color:#aaa;">Tocá un día del calendario</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ===== FOTOS DEL VIAJE ===== -->
 <section id="fotos-section">
@@ -819,6 +848,91 @@ window.carouselPrev = btn => { const c = btn.closest('.carousel'); _goTo(c, _cSt
 window.carouselNext = btn => { const c = btn.closest('.carousel'); _goTo(c, _cState[c.dataset.dest].cur + 1); _auto(c, c.dataset.dest); };
 
 document.addEventListener('DOMContentLoaded', initCarousels);
+
+// ===== CALENDARIO INTERACTIVO =====
+const ITINERARIO_CAL = {
+  9:  { ciudad:'Madrid',    emoji:'🏙️', flag:'🇪🇸', color:'#c0392b', bg:'#fdecea', nota:'Llegada de mamá desde Asunción (04:55 hs) · Descanso en el hotel' },
+  10: { ciudad:'Madrid',    emoji:'🏙️', flag:'🇪🇸', color:'#c0392b', bg:'#fdecea', nota:'Día libre en Madrid · Paseo, museo, comida española 🥘' },
+  11: { ciudad:'Toledo',    emoji:'🏰', flag:'🇪🇸', color:'#b7860b', bg:'#fef9e7', nota:'Tren Madrid → Toledo · Hotel Abad Toledo · Ciudad medieval ⚔️' },
+  12: { ciudad:'Valencia',  emoji:'🌊', flag:'🇪🇸', color:'#e67e22', bg:'#fef5ec', nota:'Tren Toledo → Valencia · Apartamentos Navio · ¡Al mediterráneo! 🌊' },
+  13: { ciudad:'Valencia',  emoji:'🌊', flag:'🇪🇸', color:'#e67e22', bg:'#fef5ec', nota:'Día libre en Valencia · Playa, paella, Ciudad de las Artes 🎨' },
+  14: { ciudad:'Valencia',  emoji:'🌊', flag:'🇪🇸', color:'#e67e22', bg:'#fef5ec', nota:'Día libre en Valencia · Mercado Central, barrio del Carmen 🍊' },
+  15: { ciudad:'Granada',   emoji:'🌹', flag:'🇪🇸', color:'#8e44ad', bg:'#f5eef8', nota:'La Alhambra · Barrio Albaicín · Mirador de San Nicolás · Noche en Granada 🌹' },
+  16: { ciudad:'Valencia',  emoji:'🌊', flag:'🇪🇸', color:'#e67e22', bg:'#fef5ec', nota:'Vuelta a Valencia desde Granada · Noche antes del vuelo a Italia ✈️' },
+  17: { ciudad:'Nápoles',   emoji:'🍕', flag:'🇮🇹', color:'#16a085', bg:'#e8f8f5', nota:'Vuelo Valencia → Nápoles (15:15 → 17:25) · Check-in NL House · ¡Benvenute in Italia! 🍕' },
+  18: { ciudad:'Nápoles',   emoji:'🍕', flag:'🇮🇹', color:'#16a085', bg:'#e8f8f5', nota:'Día explorando Nápoles · Pizza, Spaccanapoli, Castel dell\'Ovo 🏰' },
+  19: { ciudad:'Positano',  emoji:'⛵', flag:'🇮🇹', color:'#2980b9', bg:'#eaf4fb', nota:'Ferry Nápoles→Positano (10:45–12:00) ⛵ · Día en la Costa Amalfitana · Ferry Positano→Salerno (18:45) · Noche en Salerno' },
+  20: { ciudad:'Roma',      emoji:'🏛️', flag:'🇮🇹', color:'#c0392b', bg:'#fdecea', nota:'Tren Italo Salerno→Roma (16:25–18:30) · Check-in Colosseum Home · ¡Benvenute a Roma! 🎉' },
+  21: { ciudad:'Roma',      emoji:'🏛️', flag:'🇮🇹', color:'#c0392b', bg:'#fdecea', nota:'Día libre en Roma · La Città Eterna te espera 🏛️' },
+  22: { ciudad:'Roma',      emoji:'🎭', flag:'🇮🇹', color:'#c0392b', bg:'#fdecea', nota:'Día en Roma · Por la noche: 🎭 TANCREDI (Rossini) · Teatro dell\'Opera di Roma · 20:00 hs' },
+  23: { ciudad:'Florencia',  emoji:'🌸', flag:'🇮🇹', color:'#1e8449', bg:'#eafaf1', nota:'Tren Roma → Florencia · Última ciudad del viaje · Duomo, Uffizi, Ponte Vecchio 🌸' },
+  24: { ciudad:'Despedidas', emoji:'✈️', flag:'🏠', color:'#2c3e50', bg:'#eaecee', nota:'Vuelo Roma→Madrid (Wizz Air, 17:10→19:50) · Escala 3h45min · Madrid→Asunción (23:35) · ¡Hasta pronto! 💕' },
+};
+
+function initCalendario() {
+  const grid = document.getElementById('cal-grid');
+  const panel = document.getElementById('cal-panel-content');
+  if (!grid) return;
+
+  // Headers días semana
+  ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'].forEach(d => {
+    const el = document.createElement('div');
+    el.style.cssText = 'text-align:center;font-size:.6rem;font-weight:700;color:#bbb;letter-spacing:.5px;text-transform:uppercase;padding:3px 0;';
+    el.textContent = d;
+    grid.appendChild(el);
+  });
+
+  // Mayo 1 2026 = viernes → 5 celdas vacías
+  for (let i = 0; i < 5; i++) grid.appendChild(document.createElement('div'));
+
+  // Días 1–31
+  for (let day = 1; day <= 31; day++) {
+    const info = ITINERARIO_CAL[day];
+    const el = document.createElement('div');
+    el.style.cssText = 'aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;font-size:.78rem;font-weight:' + (info ? '700' : '400') + ';cursor:' + (info ? 'pointer' : 'default') + ';transition:transform .15s,box-shadow .15s;position:relative;';
+    if (info) {
+      el.style.background = info.bg;
+      el.style.color = info.color;
+      el.style.border = '2px solid ' + info.color + '33';
+      el.innerHTML = '<span style="font-size:.65rem;line-height:1;">' + info.emoji + '</span><span>' + day + '</span>';
+      el.addEventListener('click', () => {
+        document.querySelectorAll('#cal-grid div[data-sel]').forEach(e => { e.style.boxShadow=''; e.removeAttribute('data-sel'); });
+        el.style.boxShadow = '0 0 0 3px ' + info.color;
+        el.setAttribute('data-sel','1');
+        const dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+        const dow = dias[new Date(2026,4,day).getDay()];
+        panel.innerHTML = '<div style="text-align:center;">' +
+          '<div style="font-size:2.8rem;margin-bottom:8px;">' + info.emoji + ' ' + info.flag + '</div>' +
+          '<div style="font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#aaa;margin-bottom:4px;">' + dow + ' ' + day + ' de mayo</div>' +
+          '<div style="font-family:\'Playfair Display\',serif;font-size:1.5rem;font-weight:700;color:' + info.color + ';margin-bottom:14px;">' + info.ciudad + '</div>' +
+          '<div style="font-size:.85rem;color:#555;line-height:1.65;background:' + info.bg + ';border-radius:10px;padding:14px 16px;text-align:left;">' + info.nota + '</div>' +
+          '</div>';
+      });
+      el.addEventListener('mouseover', () => { if (!el.getAttribute('data-sel')) el.style.transform='scale(1.12)'; });
+      el.addEventListener('mouseout', () => { if (!el.getAttribute('data-sel')) el.style.transform='scale(1)'; });
+    } else {
+      el.style.color = '#d5d5d5';
+      el.textContent = day;
+    }
+    grid.appendChild(el);
+  }
+
+  // Leyenda
+  const legend = document.getElementById('cal-legend');
+  const seen = {};
+  for (let d = 9; d <= 24; d++) {
+    const info = ITINERARIO_CAL[d];
+    if (info && !seen[info.ciudad]) {
+      seen[info.ciudad] = true;
+      const item = document.createElement('div');
+      item.style.cssText = 'display:flex;align-items:center;gap:4px;font-size:.68rem;font-weight:700;color:' + info.color + ';background:' + info.bg + ';padding:3px 8px;border-radius:20px;';
+      item.innerHTML = '<span>' + info.emoji + '</span><span>' + info.ciudad + '</span>';
+      legend.appendChild(item);
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initCalendario);
 </script>
 
 <!-- ===== FIREBASE: módulo independiente ===== -->
