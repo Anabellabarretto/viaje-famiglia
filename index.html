@@ -113,6 +113,20 @@
     .act-delete { background:none; border:none; cursor:pointer; color:#ccc; font-size:1rem; padding:4px 6px; border-radius:6px; transition:color .2s,background .2s; flex-shrink:0; margin-top:-2px; }
     .act-delete:hover { color:var(--terra); background:#fee8e2; }
     .act-empty { font-size:.85rem; color:var(--text-light); font-style:italic; }
+    .reply-section { margin-top:10px; padding-top:10px; border-top:1px solid var(--border); }
+    .reply-list { display:flex; flex-direction:column; gap:6px; margin-bottom:8px; }
+    .reply-card { background:#f8f6f0; border-radius:8px; padding:8px 12px; }
+    .reply-card-text { font-size:.84rem; color:var(--text); line-height:1.45; display:block; margin-bottom:2px; }
+    .reply-card-author { font-size:.72rem; color:var(--text-light); font-style:italic; }
+    .btn-reply { background:none; border:1px solid var(--border); border-radius:20px; padding:4px 12px; font-size:.74rem; color:var(--text-light); cursor:pointer; font-family:'Lato',sans-serif; transition:background .15s; }
+    .btn-reply:hover { background:var(--border); }
+    .reply-form { margin-top:8px; display:none; flex-direction:column; gap:6px; }
+    .reply-form.open { display:flex; }
+    .reply-form input, .reply-form textarea { width:100%; padding:7px 10px; border:1.5px solid var(--border); border-radius:8px; font-family:'Lato',sans-serif; font-size:.83rem; color:var(--text); background:white; outline:none; box-sizing:border-box; }
+    .reply-form textarea { min-height:48px; resize:vertical; }
+    .reply-btns { display:flex; gap:6px; }
+    .reply-btns .btn-rc { flex:1; padding:7px; background:none; border:1.5px solid var(--border); border-radius:20px; color:var(--text-light); font-size:.78rem; cursor:pointer; font-family:'Lato',sans-serif; }
+    .reply-btns .btn-rs { flex:2; padding:7px; background:var(--navy); border:none; border-radius:20px; color:white; font-size:.78rem; font-weight:700; cursor:pointer; font-family:'Lato',sans-serif; }
 
     /* INLINE ADD FORM */
     .act-add-form { background:#f0ebe0; border:1px dashed var(--border); border-radius:10px; padding:14px 16px; display:none; margin-top:10px; }
@@ -1027,9 +1041,14 @@ try {
     }
 
     const q = query(collection(db,'actividades'), where('destino','==',dest), orderBy('timestamp','desc'));
+    const _replyUnsubs = {};
     const render = items => {
       const el = document.getElementById(`act-list-${dest}`);
       if (!el) return;
+      // Cancelar listeners de respuestas anteriores
+      Object.values(_replyUnsubs).forEach(u => u());
+      Object.keys(_replyUnsubs).forEach(k => delete _replyUnsubs[k]);
+
       el.innerHTML = items.length === 0
         ? `<p class="act-empty">Todavía no hay ideas aquí.</p>`
         : items.map(it => `<div class="act-card">
@@ -1039,7 +1058,33 @@ try {
               <div class="act-card-author">— ${esc(it.quien)}</div>
             </div>
             <button class="act-delete" onclick="window._delAct('${it.id}')">🗑️</button>
+            <div class="reply-section">
+              <div class="reply-list" id="rlist-${it.id}"></div>
+              <button class="btn-reply" onclick="window._toggleReply('${it.id}')">💬 Responder</button>
+              <div class="reply-form" id="rform-${it.id}">
+                <input type="text" id="rquien-${it.id}" placeholder="Tu nombre" maxlength="40" />
+                <textarea id="rtexto-${it.id}" placeholder="Tu respuesta..."></textarea>
+                <div class="reply-btns">
+                  <button class="btn-rc" onclick="window._toggleReply('${it.id}')">Cancelar</button>
+                  <button class="btn-rs" onclick="window._saveReply('${it.id}')">Enviar →</button>
+                </div>
+              </div>
+            </div>
           </div>`).join('');
+
+      // Escuchar respuestas por cada idea
+      items.forEach(it => {
+        const qr = query(collection(db,'respuestas'), where('idIdea','==',it.id), orderBy('timestamp','asc'));
+        _replyUnsubs[it.id] = onSnapshot(qr, snap => {
+          const el2 = document.getElementById(`rlist-${it.id}`);
+          if (!el2) return;
+          const rs = snap.docs.map(d=>({id:d.id,...d.data()}));
+          el2.innerHTML = rs.map(r=>`<div class="reply-card">
+            <span class="reply-card-text">${linkify(r.texto)}</span>
+            <span class="reply-card-author">— ${esc(r.quien)}</span>
+          </div>`).join('');
+        }, ()=>{});
+      });
     };
     onSnapshot(q, snap => render(snap.docs.map(d=>({id:d.id,...d.data()}))),
       () => onSnapshot(query(collection(db,'actividades'),where('destino','==',dest)),
@@ -1075,6 +1120,23 @@ try {
     if (!confirm('¿Borrar esta idea?')) return;
     await deleteDoc(doc(db,'actividades',id));
     toast('Idea borrada');
+  };
+  window._toggleReply = id => {
+    const f = document.getElementById(`rform-${id}`);
+    if (!f) return;
+    f.classList.toggle('open');
+    if (f.classList.contains('open')) document.getElementById(`rquien-${id}`)?.focus();
+  };
+  window._saveReply = async id => {
+    const quien = document.getElementById(`rquien-${id}`)?.value.trim();
+    const texto = document.getElementById(`rtexto-${id}`)?.value.trim();
+    if (!quien) { alert('Ponés tu nombre 😊'); return; }
+    if (!texto) { alert('Escribí tu respuesta'); return; }
+    await addDoc(collection(db,'respuestas'), { idIdea:id, quien, texto, timestamp:serverTimestamp() });
+    document.getElementById(`rquien-${id}`).value = '';
+    document.getElementById(`rtexto-${id}`).value = '';
+    window._toggleReply(id);
+    toast('¡Respuesta enviada! 💬');
   };
 
   // ---- WISHLIST GENERAL ----
