@@ -954,13 +954,56 @@ try {
   const app = initializeApp(firebaseConfig);
   const db  = getFirestore(app);
 
+  // Escapa HTML y convierte URLs en links clicables
+  const linkify = raw => {
+    const s = String(raw||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return s.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener" style="color:#3a7bd5;word-break:break-all;">$1</a>');
+  };
   const esc = t => String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   const toast = msg => { const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000); };
+
+  // Comprime imagen a base64 (max 700px, calidad 75%)
+  const compressImg = file => new Promise(resolve => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const MAX = 700;
+        const ratio = Math.min(MAX/img.width, MAX/img.height, 1);
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(img.width * ratio);
+        canvas.height = Math.round(img.height * ratio);
+        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL('image/jpeg', 0.75));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
 
   // ---- ACTIVIDADES POR DESTINO ----
   const DESTINOS = ['madrid','toledo','valencia','granada','napoles','positano','salerno','roma','florencia'];
 
   DESTINOS.forEach(dest => {
+    // Agregar input de foto al formulario dinámicamente
+    const form = document.getElementById(`act-form-${dest}`);
+    if (form) {
+      const btns = form.querySelector('.act-form-btns');
+      const photoWrap = document.createElement('div');
+      photoWrap.style.cssText = 'margin-bottom:8px;';
+      photoWrap.innerHTML = `
+        <label style="display:block;font-size:.75rem;color:#888;font-weight:700;letter-spacing:.4px;text-transform:uppercase;margin-bottom:5px;">📷 Foto (opcional)</label>
+        <input type="file" id="act-foto-${dest}" accept="image/*" style="font-size:.8rem;width:100%;padding:4px 0;" />
+        <div id="act-preview-${dest}" style="margin-top:6px;"></div>`;
+      form.insertBefore(photoWrap, btns);
+      document.getElementById(`act-foto-${dest}`).addEventListener('change', async e => {
+        const file = e.target.files[0];
+        if (!file) { document.getElementById(`act-preview-${dest}`).innerHTML=''; return; }
+        const b64 = await compressImg(file);
+        document.getElementById(`act-preview-${dest}`).innerHTML = `<img src="${b64}" style="max-width:100%;max-height:130px;border-radius:8px;object-fit:cover;">`;
+      });
+    }
+
     const q = query(collection(db,'actividades'), where('destino','==',dest), orderBy('timestamp','desc'));
     const render = items => {
       const el = document.getElementById(`act-list-${dest}`);
@@ -969,7 +1012,8 @@ try {
         ? `<p class="act-empty">Todavía no hay ideas aquí.</p>`
         : items.map(it => `<div class="act-card">
             <div class="act-card-body">
-              <div class="act-card-text">${esc(it.texto)}</div>
+              ${it.foto ? `<img src="${it.foto}" style="width:100%;max-height:180px;object-fit:cover;border-radius:8px;margin-bottom:8px;">` : ''}
+              <div class="act-card-text">${linkify(it.texto)}</div>
               <div class="act-card-author">— ${esc(it.quien)}</div>
             </div>
             <button class="act-delete" onclick="window._delAct('${it.id}')">🗑️</button>
@@ -990,10 +1034,19 @@ try {
     const texto = document.getElementById(`act-texto-${dest}`).value.trim();
     if (!quien) { alert('Ponés tu nombre 😊'); return; }
     if (!texto) { alert('Escribí la idea'); return; }
-    await addDoc(collection(db,'actividades'), { destino:dest, quien, texto, timestamp:serverTimestamp() });
+    const btn = document.querySelector(`#act-form-${dest} .btn-form-save`);
+    btn.disabled = true; btn.textContent = 'Guardando...';
+    const fotoInput = document.getElementById(`act-foto-${dest}`);
+    let foto = null;
+    if (fotoInput?.files[0]) foto = await compressImg(fotoInput.files[0]);
+    const data = { destino:dest, quien, texto, timestamp:serverTimestamp() };
+    if (foto) data.foto = foto;
+    await addDoc(collection(db,'actividades'), data);
     document.getElementById(`act-quien-${dest}`).value = '';
     document.getElementById(`act-texto-${dest}`).value = '';
+    if (fotoInput) { fotoInput.value=''; document.getElementById(`act-preview-${dest}`).innerHTML=''; }
     document.getElementById(`act-form-${dest}`).classList.remove('open');
+    btn.disabled = false; btn.textContent = 'Guardar idea';
     toast('¡Idea guardada! 💡');
   };
   window._delAct = async id => {
@@ -1008,7 +1061,7 @@ try {
     const grid = document.getElementById('wish-grid');
     grid.innerHTML = items.length === 0
       ? '<div class="wish-empty">Todavía no hay ideas 🌍</div>'
-      : items.map(it=>`<div class="wish-card"><div class="wish-card-city">${esc(it.ciudad)}</div><div class="wish-card-text">${esc(it.actividad)}</div><div class="wish-card-author">— ${esc(it.quien)}</div></div>`).join('');
+      : items.map(it=>`<div class="wish-card"><div class="wish-card-city">${esc(it.ciudad)}</div><div class="wish-card-text">${linkify(it.actividad)}</div><div class="wish-card-author">— ${esc(it.quien)}</div></div>`).join('');
   }, ()=>{});
 
   window.openModal  = () => { document.getElementById('modal').classList.add('open'); document.getElementById('input-quien').focus(); };
