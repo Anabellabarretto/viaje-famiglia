@@ -1056,20 +1056,20 @@ try {
               ${it.foto ? `<img src="${it.foto}" style="width:100%;max-height:180px;object-fit:cover;border-radius:8px;margin-bottom:8px;">` : ''}
               <div class="act-card-text">${linkify(it.texto)}</div>
               <div class="act-card-author">— ${esc(it.quien)}</div>
-            </div>
-            <button class="act-delete" onclick="window._delAct('${it.id}')">🗑️</button>
-            <div class="reply-section">
-              <div class="reply-list" id="rlist-${it.id}"></div>
-              <button class="btn-reply" onclick="window._toggleReply('${it.id}')">💬 Responder</button>
-              <div class="reply-form" id="rform-${it.id}">
-                <input type="text" id="rquien-${it.id}" placeholder="Tu nombre" maxlength="40" />
-                <textarea id="rtexto-${it.id}" placeholder="Tu respuesta..."></textarea>
-                <div class="reply-btns">
-                  <button class="btn-rc" onclick="window._toggleReply('${it.id}')">Cancelar</button>
-                  <button class="btn-rs" onclick="window._saveReply('${it.id}')">Enviar →</button>
+              <div class="reply-section">
+                <div class="reply-list" id="rlist-${it.id}"></div>
+                <button class="btn-reply" onclick="window._toggleReply('${it.id}')">💬 Responder</button>
+                <div class="reply-form" id="rform-${it.id}">
+                  <input type="text" id="rquien-${it.id}" placeholder="Tu nombre" maxlength="40" />
+                  <textarea id="rtexto-${it.id}" placeholder="Tu respuesta..."></textarea>
+                  <div class="reply-btns">
+                    <button class="btn-rc" onclick="window._toggleReply('${it.id}')">Cancelar</button>
+                    <button class="btn-rs" onclick="window._saveReply('${it.id}')">Enviar →</button>
+                  </div>
                 </div>
               </div>
             </div>
+            <button class="act-delete" onclick="window._delAct('${it.id}')">🗑️</button>
           </div>`).join('');
 
       // Escuchar respuestas por cada idea
